@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard</title>
+</head>
+<body>
+    <!-- Input Form-->
+    <form id="save" method="post">
+        <input type="text" name="text" id="text">
+        <input type="submit" value="Save">
+    </form>
+
+    <!-- show existing clipboards -->
+
+    <!-- javascript -->
+    <script>
+        // get the form
+        const form = document.getElementById('save');
+
+        // add event listener
+        form.addEventListener('submit', (e) => {
+            // prevent default behaviour
+            e.preventDefault();
+
+            // get the text
+            const text = document.getElementById('text').value;
+
+            // save the text
+            localStorage.setItem('clipboard', text);
+        });
+    </script>
+
+</body>
+</html>
