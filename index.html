@@ -1,73 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Clipboard</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Clipboard</title>
 
-        <!-- link styles.css -->
-        <link rel="stylesheet" href="styles.css">
+		<!-- link styles.css -->
+		<link rel="stylesheet" href="assets/styles.css" />
 
-        <!-- favicon -->
-        <link type="image/png" rel="icon" href="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-clipboard-office-and-office-supplies-flaticons-lineal-color-flat-icons.png">
-        
+		<!-- favicon -->
+		<link
+			type="image/png"
+			rel="icon"
+			href="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-clipboard-office-and-office-supplies-flaticons-lineal-color-flat-icons.png"
+		/>
 
-        <!-- bootstrap css -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        
-        <!-- bootstrap js -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    </head>
+		<!-- bootstrap css -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
 
+		<!-- bootstrap js -->
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+	</head>
 
-    <body>
-        <!-- Input Form-->
-        <form id="save" method="post">
-            <input type="text" name="text" id="text">
-            <input type="submit" value="Add">
-        </form>
+	<body>
+		<!-- Input Form-->
+		<form id="save" method="post">
+			<input type="text" name="text" id="text" />
+			<input type="submit" value="Add" />
+		</form>
 
+		<!-- show existing clipboards -->
+		<br />
+		<br />
 
+		<h1>Existing Clipboards</h1>
+		<ul class="list-group">
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				A first list item
+				<span class="badge rounded-pill"><img src="https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png" /></span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				A second list item
+				<span class="badge rounded-pill">2</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				A third list item
+				<span class="badge rounded-pill">1</span>
+			</li>
+		</ul>
 
-        <!-- show existing clipboards -->
-        <br>
-        <br>
+		<!-- javascript -->
+		<script src="assets/script.js"></script>
 
-        <h1>Existing Clipboards</h1>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-            A first list item
-            <span class="badge  rounded-pill"><img src="https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png"/></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-            A second list item
-            <span class="badge  rounded-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-            A third list item
-            <span class="badge  rounded-pill">1</span>
-            </li>
-        </ul>
-
-
-        <!-- javascript -->
-        <script>
-            // get the form
-            const form = document.getElementById('save');
-
-            // add event listener
-            form.addEventListener('submit', (e) => {
-                // prevent default behaviour
-                e.preventDefault();
-
-                // get the text
-                const text = document.getElementById('text').value;
-
-                // save the text
-                localStorage.setItem('clipboard', text);
-            });
-        </script>
-
-    </body>
+	</body>
 </html>
