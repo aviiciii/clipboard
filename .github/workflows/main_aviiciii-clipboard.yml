@@ -31,11 +31,14 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      - name: Run Tests
+
+      # Add environment variables to GitHub Actions
+      - name: Add environment variables
         env: 
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         run: |
-          nbdev_test_nbs
+          echo "SERVICE_ACCOUNT_KEY=$SERVICE_ACCOUNT_KEY" >> $GITHUB_ENV
+
           
       
       - name: Upload artifact for deployment jobs
