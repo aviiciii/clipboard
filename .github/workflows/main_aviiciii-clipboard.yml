@@ -33,12 +33,12 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       # Add environment variables to GitHub Actions
-      - name: Add environment variables
-        env: 
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        run: |
-          # add env vars to .env file
-          echo "SERVICE_ACCOUNT_KEY=$SERVICE_ACCOUNT_KEY" >> .env
+      # - name: Add environment variables
+      #   env: 
+      #     SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+      #   run: |
+      #     # add env vars to .env file
+      #     echo "SERVICE_ACCOUNT_KEY=$SERVICE_ACCOUNT_KEY" >> .env
           
       
       - name: Upload artifact for deployment jobs

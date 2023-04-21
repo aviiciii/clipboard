@@ -4,9 +4,9 @@ from firebase_admin import db
 import json
 import os
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 from flask import Flask, request, jsonify
 
@@ -16,7 +16,7 @@ app = Flask(__name__)
 def home():
     return "Hello World"
 # Fetch the service account key JSON file contents
-service_key = json.loads(os.environ.get('SERVICE_ACCOUNT_KEY'))
+service_key = json.loads(os.environ['SERVICE_ACCOUNT_KEY'])
 cred = credentials.Certificate(service_key)
 
 # Initialize the app with a service account, granting admin privileges
