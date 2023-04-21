@@ -33,13 +33,21 @@ def api():
         
         ref = db.reference('/')
 
-        # read ref as json data
+        # read ref as json data to a list
         snapshot = ref.order_by_key().get()
 
+        # remove null in snapshot list
+        snapshot = list(filter(None, snapshot))
+        
+        # create a dict to store the clipboard data
+        clipboard = {}
 
-        print(snapshot)
+        # refactor the data to a dict
+        for clip in range(len(snapshot)):
+            clipboard[clip+1] = snapshot[clip]['data']
 
-        return jsonify(snapshot)
+
+        return jsonify(clipboard)
 
 
 @app.route('/api', methods=['POST'])
