@@ -30,9 +30,7 @@ def api():
         # read ref as json data
         snapshot = ref.order_by_key().get()
 
-        # reverse the ordered dict by key to get the latest data
-        snapshot = dict(reversed(list(snapshot.items())))
-
+        
         print(snapshot)
 
         return jsonify(snapshot)
