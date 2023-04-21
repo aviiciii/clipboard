@@ -37,8 +37,8 @@ jobs:
         env: 
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         run: |
-          echo "SERVICE_ACCOUNT_KEY=$SERVICE_ACCOUNT_KEY" >> $GITHUB_ENV
-
+          # add env vars to .env file
+          echo "SERVICE_ACCOUNT_KEY=$SERVICE_ACCOUNT_KEY" >> .env
           
       
       - name: Upload artifact for deployment jobs
