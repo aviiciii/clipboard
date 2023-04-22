@@ -38,27 +38,56 @@ document.addEventListener("DOMContentLoaded", () => {
             listItem.className = "list-group-item d-flex justify-content-between align-items-center";
             listItem.innerHTML = clipboard;
 
-            // add span to list item
-            const span = document.createElement("span");
-            span.className = "badge rounded-pill";
+            // add button to list item
+            const button = document.createElement("button");
+            button.className = "badge rounded-pill copy-to-clipboard-button";
 
             // add img to span
             const img = document.createElement("img");
             img.src = "https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png";
             img.className = "img-fluid";
             img.alt = "copy";
-            span.appendChild(img);
+            img.className = "copy-to-clipboard-img";
+            button.appendChild(img);
 
             // add span to list item
-            listItem.appendChild(span);
+            listItem.appendChild(button);
 
             // add the list item to the list
             clipboardListItem.appendChild(listItem);
         }
-
+        // remove loading list item
+        const loading = document.querySelector("#loading");
+        loading.remove();
 
     });
 
+    // copy to clipboard
+    document.addEventListener("click", (e) => {
+        // check if the target is the copy button by class containing copy-to-clipboard
+        if (e.target.classList.contains("copy-to-clipboard-button") ) {
+
+            // get the clipboard text
+            const clipboardText = e.target.parentElement.innerText;
+
+            // save to clipboard
+            navigator.clipboard.writeText(clipboardText).then(() => {
+            });
+
+
+        }
+        else if (e.target.classList.contains("copy-to-clipboard-img")) {
+
+            // get the clipboard text
+            const clipboardText = e.target.parentElement.parentElement.innerText;
+
+            // save to clipboard
+            navigator.clipboard.writeText(clipboardText).then(() => {
+                console.log("copied to clipboard");
+            });
+        }
+
+    });
     
     
 });

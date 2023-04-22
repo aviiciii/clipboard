@@ -23,7 +23,6 @@ body{
     width: 100%;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 80px;
     background-color: #EEE2DC;
     border-radius: 0px;
     text-align: center;
@@ -83,4 +82,18 @@ body{
 
 .badge img{
     width: 20px;
+}
+.copy-to-clipboard-button{
+    background-color: #BAB2B5;
+    border: 0;
+    border-radius: 10px;
+    min-height: 30px;
+    color: #123C69;
+    text-align: center;
+}
+
+
+
+.copy-to-clipboard-button:focus{
+    outline: none;
 }
