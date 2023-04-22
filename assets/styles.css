@@ -15,6 +15,16 @@ body{
     width: 300px;
     height: 300px;
     margin-top: 20px;
+
+    /* not selectable and draggable */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none;
+
+    -webkit-user-drag: none; /* Safari */
+    -moz-user-drag: none; /* Firefox */
+    -ms-user-drag: none; /* IE10+/Edge */
 }
 
 /* input form */
@@ -57,10 +67,20 @@ body{
 /* Existing Clipboards */
 
 .existing-clipboards h1{
-    color: #AC3B61;
+    color: #6a6969;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 50px;
+    
+    /* not selectable and draggable */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none;
+
+    -webkit-user-drag: none; /* Safari */
+    -moz-user-drag: none; /* Firefox */
+    -ms-user-drag: none; /* IE10+/Edge */
     
 }
 
