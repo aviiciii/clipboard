@@ -3,12 +3,25 @@
 body{
     background-color: #EEE2DC;
     font-family: 'Crete Round', serif;
+
+    /* scrollbar */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+
+}
+
+/* scrollbar */
+body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+    width: 0;
+    height: 0;
 }
 
 
 /* logo */
 
-/* center the logo */
 .logo img{
     display: block;
     margin: 0 auto;
@@ -64,13 +77,13 @@ body{
     font-weight: 700;
 }
 
-/* Existing Clipboards */
+/* Clipboards */
 
 .existing-clipboards h1{
     color: #6a6969;
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     
     /* not selectable and draggable */
     -webkit-user-select: none; /* Safari */
@@ -102,6 +115,10 @@ body{
 
 .badge img{
     width: 20px;
+
+    -webkit-user-drag: none; /* Safari */
+    -moz-user-drag: none; /* Firefox */
+    -ms-user-drag: none; /* IE10+/Edge */
 }
 .copy-to-clipboard-button{
     background-color: #BAB2B5;
@@ -110,6 +127,10 @@ body{
     min-height: 30px;
     color: #123C69;
     text-align: center;
+
+    -webkit-user-drag: none; /* Safari */
+    -moz-user-drag: none; /* Firefox */
+    -ms-user-drag: none; /* IE10+/Edge */
 }
 
 

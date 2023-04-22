@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // add list item to list
         const clipboardListItem = document.querySelector(".list-group");
-        clipboardListItem.appendChild(listItem);
+        clipboardListItem.prepend(listItem);
 
 
         return listItem;
