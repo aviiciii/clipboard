@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log(clips);
 
-
-        
-
         // get the clipboard list group
         const clipboardListItem = document.querySelector(".list-group");
 
@@ -34,33 +31,53 @@ document.addEventListener("DOMContentLoaded", () => {
             const clipboard = clips[i];
 
             // create the list item
-            const listItem = document.createElement("li");
-            listItem.className = "list-group-item d-flex justify-content-between align-items-center";
-            listItem.innerHTML = clipboard;
+            const listItem = createClipboardListItem(clipboard);
 
-            // add button to list item
-            const button = document.createElement("button");
-            button.className = "badge rounded-pill copy-to-clipboard-button";
 
-            // add img to span
-            const img = document.createElement("img");
-            img.src = "https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png";
-            img.className = "img-fluid";
-            img.alt = "copy";
-            img.className = "copy-to-clipboard-img";
-            button.appendChild(img);
-
-            // add span to list item
-            listItem.appendChild(button);
-
-            // add the list item to the list
-            clipboardListItem.appendChild(listItem);
         }
         // remove loading list item
         const loading = document.querySelector("#loading");
         loading.remove();
 
     });
+
+    // get the form button and add event listener
+    const formButton = document.querySelector("#submit");
+
+    formButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // get the form
+        const content = document.querySelector("#text");
+
+        // data to send to api
+        const data = {
+            "body": content.value.trim()
+        };
+        
+        // post the clipboard to the api
+        fetch("https://aviiciii-clipboard.azurewebsites.net/api", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        // clear the form
+        content.value = "";
+
+        // add the clipboard to the list
+        createClipboardListItem(data.body);
+
+    });
+
 
     // copy to clipboard
     document.addEventListener("click", (e) => {
@@ -88,6 +105,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
-    
+
+
+    // create a clipboard list item
+    const createClipboardListItem = (clipboard) => {
+        // create the list item
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item d-flex justify-content-between align-items-center";
+        listItem.innerHTML = clipboard;
+
+        // add button to list item
+        const button = document.createElement("button");
+        button.className = "badge rounded-pill copy-to-clipboard-button";
+
+        // add img to span
+        const img = document.createElement("img");
+        img.src = "https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png";
+        img.className = "img-fluid";
+        img.alt = "copy";
+        img.className = "copy-to-clipboard-img";
+        button.appendChild(img);
+
+        // add span to list item
+        listItem.appendChild(button);
+
+        // add list item to list
+        const clipboardListItem = document.querySelector(".list-group");
+        clipboardListItem.appendChild(listItem);
+
+
+        return listItem;
+    }
+
     
 });
