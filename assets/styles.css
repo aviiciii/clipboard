@@ -153,3 +153,38 @@ body::-webkit-scrollbar {
 .copy-to-clipboard-button:focus{
     outline: none;
 }
+
+
+@media screen and (max-width: 768px) {
+    .logo img{
+        margin-top: 30px;
+        width: 200px;
+    }
+    #text{
+        width: 90%;
+        border-bottom: 3px solid #123C69;
+    }
+    #submit{
+        margin-top: 10px;
+        margin-left: -10px;
+        font-size: 24px;
+    }
+    .form-container{
+        margin-bottom: 30px;
+    }
+    .existing-clipboards .github{
+        margin-bottom: 10px;
+    }
+
+    .existing-clipboards a img {
+        width: 40px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        margin-right: 10px;
+    }
+    .list-group{
+        width: 90%;
+        font-size: 14px;
+    }
+}
+    
