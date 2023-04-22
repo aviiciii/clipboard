@@ -1,6 +1,8 @@
 // dom content loaded
 document.addEventListener("DOMContentLoaded", () => {
 
+
+
     // get existing clipboards from api and return them
     const getClipboards = async () => {
 
@@ -41,9 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // get the form button and add event listener
-    const formButton = document.querySelector("#submit");
 
+
+    // add a clipboard to the api
+    const formButton = document.querySelector("#submit");
     formButton.addEventListener("click", (e) => {
         e.preventDefault();
 
@@ -79,11 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+
+
     // copy to clipboard
     document.addEventListener("click", (e) => {
         // check if the target is the copy button by class containing copy-to-clipboard
         if (e.target.classList.contains("copy-to-clipboard-button") ) {
-
+            
             // get the clipboard text
             const clipboardText = e.target.parentElement.innerText;
 
@@ -91,6 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
             navigator.clipboard.writeText(clipboardText).then(() => {
             });
 
+            const clip_html = e.target.parentElement.innerHTML;
+            
+            const parent = e.target.parentElement;
+
+            // change the text to copied
+            e.target.parentElement.innerText = "Copied!";
+            setTimeout(function () {
+                parent.innerHTML = clip_html;
+            }, 800); 
 
         }
         else if (e.target.classList.contains("copy-to-clipboard-img")) {
@@ -102,6 +116,18 @@ document.addEventListener("DOMContentLoaded", () => {
             navigator.clipboard.writeText(clipboardText).then(() => {
                 console.log("copied to clipboard");
             });
+            
+            const clip_html = e.target.parentElement.parentElement.innerHTML;
+
+            const parent = e.target.parentElement.parentElement;
+            
+            // change the text to copied
+            e.target.parentElement.parentElement.innerText = "Copied!";
+            setTimeout(function () {
+                parent.innerHTML = clip_html;
+            }
+            , 800);
+
         }
 
     });
