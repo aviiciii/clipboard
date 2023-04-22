@@ -6,8 +6,12 @@ from firebase_admin import db
 import json
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
+# Initialize Flask app
 app = Flask(__name__)
+# Enable CORS
+CORS(app)
 
 
 # Fetch the service account key JSON file contents
