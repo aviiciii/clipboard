@@ -25,9 +25,9 @@ body::-webkit-scrollbar {
 .logo img{
     display: block;
     margin: 0 auto;
-    width: 300px;
-    height: 300px;
-    margin-top: 20px;
+    width: 360px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 
     /* not selectable and draggable */
     -webkit-user-select: none; /* Safari */
@@ -79,17 +79,14 @@ body::-webkit-scrollbar {
 
 /* Clipboards */
 
-.existing-clipboards h1{
-    color: #6a6969;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
+.existing-clipboards .github{
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
     
-    /* not selectable and draggable */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none;
 
     -webkit-user-drag: none; /* Safari */
     -moz-user-drag: none; /* Firefox */
@@ -97,8 +94,24 @@ body::-webkit-scrollbar {
     
 }
 
+.existing-clipboards a img {
+    width: 50px;
+    /* center */
+    vertical-align: middle;
+    line-height: normal;
+
+    -webkit-user-drag: none; /* Safari */
+    -moz-user-drag: none; /* Firefox */
+    -ms-user-drag: none; /* IE10+/Edge */
+
+    margin-top: 14px;
+    margin-bottom: 40px;
+    margin-right: 10px;
+
+}
+
 .list-group{
-    width: 80%;
+    width: 68%;
     margin: 0 auto;
     border-radius: 10px;
 }
