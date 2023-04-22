@@ -6,8 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Clipboard</title>
 
-		<!-- link styles.css -->
-		<link rel="stylesheet" href="assets/styles.css" />
+		
 
 		<!-- favicon -->
 		<link
@@ -30,34 +29,54 @@
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 			crossorigin="anonymous"
 		></script>
+
+		<!-- link styles.css -->
+		<link rel="stylesheet" href="assets/styles.css" />
 	</head>
 
 	<body>
+		<!-- logo -->
+		<div class="logo" >
+			<img
+				src="assets/logo.png" width="350px" 
+			/>
+		</div>
+
 		<!-- Input Form-->
-		<form id="save" method="post">
-			<input type="text" name="text" id="text" />
-			<input type="submit" value="Add" />
-		</form>
+		<div class="form-container">
+
+			<form id="save" method="post">
+				<input type="text" name="text" id="text" />
+				<input type="submit" value="Add" id="submit" />
+			</form>
+		</div>
+		
 
 		<!-- show existing clipboards -->
 		<br />
 		<br />
 
-		<h1>Existing Clipboards</h1>
-		<ul class="list-group">
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				A first list item
-				<span class="badge rounded-pill"><img src="https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png" /></span>
-			</li>
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				A second list item
-				<span class="badge rounded-pill">2</span>
-			</li>
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				A third list item
-				<span class="badge rounded-pill">1</span>
-			</li>
-		</ul>
+		<div class="existing-clipboards">
+			<h1>Existing Clipboards</h1>
+			<ul class="list-group">
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+					A first list item
+					<span class="badge rounded-pill"><img src="https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png" /></span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+					A second list item
+					<span class="badge rounded-pill"><img src="https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png" /></span>
+
+				</li>
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+					A third list item
+					<span class="badge rounded-pill"><img src="https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png" /></span>
+
+				</li>
+			</ul>
+		</div>
+
+		
 
 		<!-- javascript -->
 		<script src="assets/script.js"></script>

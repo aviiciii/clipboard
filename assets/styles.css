@@ -1,6 +1,84 @@
-.list-group{
-    width: 70%;
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+
+body{
+    background-color: #EEE2DC;
+    font-family: 'Crete Round', serif;
+}
+
+
+/* logo */
+
+/* center the logo */
+.logo img{
+    display: block;
     margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    margin-top: 20px;
+}
+
+/* input form */
+
+.form-container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 80px;
+    background-color: #EEE2DC;
+    border-radius: 0px;
+    text-align: center;
+}
+
+#text{
+    border: 0;
+    border-bottom: 4px solid #123C69;
+    background-color: #EEE2DC;
+    width: 60%;
+    height: 40px;
+    border-radius: 0;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#text:focus{
+    outline: none;
+}
+
+#submit{
+    background-color: #EEE2DC;
+    color: #AC3B61;
+    border: 0;
+    border-radius: 10px;
+    padding: none;
+    margin-left: 40px;
+    font-size: 30px ;
+    font-weight: 700;
+}
+
+/* Existing Clipboards */
+
+.existing-clipboards h1{
+    color: #AC3B61;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+
+.list-group{
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.list-group-item{
+    background-color: #BAB2B5;
+    border: 1px solid #BAB2B5;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    min-height: 40px;
+    color: #123C69;
+    
 }
 
 .badge img{
