@@ -26,8 +26,8 @@ body::-webkit-scrollbar {
     display: block;
     margin: 0 auto;
     width: 360px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-bottom: 80px;
 
     /* not selectable and draggable */
     -webkit-user-select: none; /* Safari */
@@ -49,6 +49,7 @@ body::-webkit-scrollbar {
     background-color: #EEE2DC;
     border-radius: 0px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 #text{
@@ -79,6 +80,7 @@ body::-webkit-scrollbar {
 
 /* Clipboards */
 
+/* github icon */
 .existing-clipboards .github{
     /* center */
     display: flex;
@@ -86,12 +88,11 @@ body::-webkit-scrollbar {
     justify-content: center;
     text-decoration: none;
 
-    
-
     -webkit-user-drag: none; /* Safari */
     -moz-user-drag: none; /* Firefox */
     -ms-user-drag: none; /* IE10+/Edge */
     
+    margin-bottom: 20px;
 }
 
 .existing-clipboards a img {
@@ -114,13 +115,14 @@ body::-webkit-scrollbar {
     width: 68%;
     margin: 0 auto;
     border-radius: 10px;
+    margin-bottom: 30px;
 }
 
 .list-group-item{
     background-color: #BAB2B5;
     border: 1px solid #BAB2B5;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     min-height: 40px;
     color: #123C69;
     
