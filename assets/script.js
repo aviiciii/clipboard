@@ -53,32 +53,39 @@ document.addEventListener("DOMContentLoaded", () => {
         // get the form
         const content = document.querySelector("#text");
 
-        // data to send to api
-        const data = {
-            "body": content.value.trim()
-        };
+        // check if the form is empty
+        if (content.value.trim() === "") {
+            alert("Please enter some text");
+        }
+        else{
+            // data to send to api
+            const data = {
+                "body": content.value.trim()
+            };
+            
+            // post the clipboard to the api
+            fetch("https://aviiciii-clipboard.azurewebsites.net/api", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            // clear the form
+            content.value = "";
+
+            // add the clipboard to the list
+            createClipboardListItem(data.body);
+
+        }
         
-        // post the clipboard to the api
-        fetch("https://aviiciii-clipboard.azurewebsites.net/api", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
-        // clear the form
-        content.value = "";
-
-        // add the clipboard to the list
-        createClipboardListItem(data.body);
-
     });
 
 
