@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
         headers.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
         
         // Production
-        // const response = await fetch("https://aviiciii-clipboard.azurewebsites.net/api", {method: 'GET', headers: headers});
+        const response = await fetch("https://aviiciii-clipboard.azurewebsites.net/api", {method: 'GET', headers: headers});
         // Development
-        const response = await fetch("http://127.0.0.1:5000/api", {method: 'GET', headers: headers});
+        // const response = await fetch("http://127.0.0.1:5000/api", {method: 'GET', headers: headers});
         const data = await response.json();
         return data;
     };
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // add hidden p tag to list item
         const hidden = document.createElement("p");
         hidden.className = "hidden";
-        // hidden.style.display = "none";
+        hidden.style.display = "none";
         hidden.innerText = id;
 
         // add hidden p tag to list item

@@ -14,8 +14,8 @@ addEventListener("DOMContentLoaded", () => {
         // check if id is a number
         else{
             // post id to api using get
-            // let url = `https://aviiciii-clipboard.azurewebsites.net/delete/${id.value.trim()}`;
-            let url = `http://127.0.0.1:5000/delete/${id.value.trim()}`;
+            let url = `https://aviiciii-clipboard.azurewebsites.net/delete/${id.value.trim()}`;
+            // let url = `http://127.0.0.1:5000/delete/${id.value.trim()}`;
             
             let headers = new Headers();
             headers.append('Access-Control-Allow-Origin', '*');
