@@ -67,6 +67,21 @@ body::-webkit-scrollbar {
     outline: none;
 }
 
+#number{
+    border: 0;
+    border-bottom: 4px solid #123C69;
+    background-color: #EEE2DC;
+    width: 30%;
+    height: 40px;
+    border-radius: 0;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#number:focus{
+    outline: none;
+}
+
 #submit{
     background-color: #EEE2DC;
     color: #AC3B61;
