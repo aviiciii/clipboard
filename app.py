@@ -101,12 +101,18 @@ def delete(key):
         # generate clipboard data
         clipboard = generate_clipboard(snapshot)
 
+        # remove null in clipboard dict
+        clipboard = {k: v for k, v in clipboard.items() if v is not None}
+
+        # print(clipboard.keys())
         # check if the key exists
         if key not in clipboard.keys():
             return jsonify({"msg": "Key not found in the database."}), 404
 
         # delete the key
         try:
+            # print('Deleting key: ', key)
+            # print(clipboard.keys())
             ref.child(str(key)).delete()
             return jsonify({"msg": "Data deleted from the database."}), 200
         except:
