@@ -163,7 +163,7 @@ def generate_clipboard(snapshot):
     clipboard = {}
 
     # refactor the data to a dict
-    for clip in range(len(snapshot)):
+    for clip in range(1, len(snapshot)):
         if snapshot[clip] is None:
             clipboard[clip] = None
         else:

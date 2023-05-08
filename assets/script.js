@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
         headers.append('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
         headers.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
         
-        const response = await fetch("https://aviiciii-clipboard.azurewebsites.net/api", {method: 'GET', headers: headers});
+        // Production
+        // const response = await fetch("https://aviiciii-clipboard.azurewebsites.net/api", {method: 'GET', headers: headers});
+        // Development
+        const response = await fetch("http://127.0.0.1:5000/api", {method: 'GET', headers: headers});
         const data = await response.json();
         return data;
     };
@@ -23,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // get keys
         var keys = Object.keys(clipboards);
 
-        console.log(keys);
+        console.log(keys, clips);
 
 
         // loop through the clipboards and add them to the list
@@ -31,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(i);
             console.log(clips[i]);
             
+            // check if clip[i] is not null
+            if (clips[i] === null) {
+                continue;
+            }
 
             // add the clips to the list
             createClipboardListItem(clips[i], keys[i]);
