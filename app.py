@@ -112,7 +112,7 @@ def delete(key):
         except:
             return jsonify({"msg": "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."}), 500
 
-    return jsonify({"msg": "Error"}), 200
+    return jsonify({"msg": "Error"}), 500
 
 
 # Generate new key
@@ -148,24 +148,27 @@ def forbidden(e):
 
 
 
-
-
-
-
 # Generate clipboard data from the database
 def generate_clipboard(snapshot):
 
     if not snapshot:
         return {}
-
+    print("Snapshot: isnidinde")
+    print(snapshot)
     # remove null in snapshot list
-    snapshot = list(filter(None, snapshot))
+    # snapshot = list(filter(None, snapshot))
+    
     
     # create a dict to store the clipboard data
     clipboard = {}
 
     # refactor the data to a dict
     for clip in range(len(snapshot)):
-        clipboard[clip+1] = snapshot[clip]['data']
-
+        if snapshot[clip] is None:
+            clipboard[clip] = None
+        else:
+            clipboard[clip] = snapshot[clip]['data']
+    print("Clipboard data: isnidinde")
+    print (clipboard)
+    print("")
     return clipboard
