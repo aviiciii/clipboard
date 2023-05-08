@@ -25,13 +25,13 @@ firebase_admin.initialize_app(cred, {
 
 
 
-
+# Default route
 @app.route('/', methods=['GET'])
 def home():
     return "Hello World"
 
 
-
+# Get clipboard data and add new data
 @app.route('/api', methods=['GET', 'POST'])
 def api():
     if request.method == 'GET':
@@ -42,6 +42,8 @@ def api():
         snapshot = ref.order_by_key().get()
 
         clipboard = generate_clipboard(snapshot)
+
+        # print(clipboard)
 
         if not clipboard:
             return jsonify({"msg": "No data found in the database."}), 404
@@ -85,13 +87,40 @@ def api():
     else:
         return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST."}), 405
 
-# Generate new key
-def generate_key(clipboard):
-    if not clipboard:
-        return 1
-    else:
-        latest_key = max(clipboard.keys())
-    return int(latest_key) + 1 if latest_key else 1
+
+# Delete clipboard data
+@app.route('/delete/<int:key>', methods=['GET'])
+def delete(key):
+    if request.method == 'GET':
+        # get the database reference
+        ref = db.reference('/')
+
+        # read ref as json data
+        snapshot = ref.order_by_key().get()
+
+        # generate clipboard data
+        clipboard = generate_clipboard(snapshot)
+
+        # remove null in clipboard dict
+        clipboard = {k: v for k, v in clipboard.items() if v is not None}
+
+        # print(clipboard.keys())
+        # check if the key exists
+        if key not in clipboard.keys():
+            return jsonify({"msg": "Key not found in the database."}), 404
+
+        # delete the key
+        try:
+            # print('Deleting key: ', key)
+            # print(clipboard.keys())
+            ref.child(str(key)).delete()
+            return jsonify({"msg": "Data deleted from the database."}), 200
+        except:
+            return jsonify({"msg": "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."}), 500
+
+    return jsonify({"msg": "Error"}), 500
+
+
 
 # Error handler
 
@@ -105,7 +134,7 @@ def internal_server_error(e):
 
 @app.errorhandler(405)
 def method_not_allowed(e):
-    return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST."}), 405
+    return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"}), 405
 
 @app.errorhandler(400)
 def bad_request(e):
@@ -116,10 +145,13 @@ def forbidden(e):
     return jsonify({"msg": "Forbidden"}), 403
 
 
-
-
-
-
+# Generate new key
+def generate_key(clipboard):
+    if not clipboard:
+        return 1
+    else:
+        latest_key = max(clipboard.keys())
+    return int(latest_key) + 1 if latest_key else 1
 
 
 # Generate clipboard data from the database
@@ -127,15 +159,20 @@ def generate_clipboard(snapshot):
 
     if not snapshot:
         return {}
+    
 
     # remove null in snapshot list
-    snapshot = list(filter(None, snapshot))
+    # snapshot = list(filter(None, snapshot))
+    
     
     # create a dict to store the clipboard data
     clipboard = {}
 
     # refactor the data to a dict
-    for clip in range(len(snapshot)):
-        clipboard[clip+1] = snapshot[clip]['data']
-
+    for clip in range(1, len(snapshot)):
+        if snapshot[clip] is None:
+            clipboard[clip] = None
+        else:
+            clipboard[clip] = snapshot[clip]['data']
+    
     return clipboard

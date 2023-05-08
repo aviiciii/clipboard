@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
         headers.append('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
         headers.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
         
+        // Production
         const response = await fetch("https://aviiciii-clipboard.azurewebsites.net/api", {method: 'GET', headers: headers});
+        // Development
+        // const response = await fetch("http://127.0.0.1:5000/api", {method: 'GET', headers: headers});
         const data = await response.json();
         return data;
     };
@@ -20,20 +23,24 @@ document.addEventListener("DOMContentLoaded", () => {
     getClipboards().then(data => {
         var clipboards = data;
         var clips = Object.values(clipboards);
+        // get keys
+        var keys = Object.keys(clipboards);
 
-        console.log(clips);
+        console.log(keys, clips);
 
-        // get the clipboard list group
-        const clipboardListItem = document.querySelector(".list-group");
 
         // loop through the clipboards and add them to the list
         for (let i = 0; i < clips.length; i++) {
             console.log(i);
             console.log(clips[i]);
-            const clipboard = clips[i];
+            
+            // check if clip[i] is not null
+            if (clips[i] === null) {
+                continue;
+            }
 
-            // create the list item
-            const listItem = createClipboardListItem(clipboard);
+            // add the clips to the list
+            createClipboardListItem(clips[i], keys[i]);
 
 
         }
@@ -141,11 +148,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // create a clipboard list item
-    const createClipboardListItem = (clipboard) => {
+    const createClipboardListItem = (clipboard, id) => {
         // create the list item
         const listItem = document.createElement("li");
         listItem.className = "list-group-item d-flex justify-content-between align-items-center";
         listItem.innerHTML = clipboard;
+
+        // add hidden p tag to list item
+        const hidden = document.createElement("p");
+        hidden.className = "hidden";
+        hidden.style.display = "none";
+        hidden.innerText = id;
+
+        // add hidden p tag to list item
+        listItem.appendChild(hidden);
 
         // add button to list item
         const button = document.createElement("button");
