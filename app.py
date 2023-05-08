@@ -25,7 +25,7 @@ firebase_admin.initialize_app(cred, {
 
 
 
-
+# Default route
 @app.route('/', methods=['GET'])
 def home():
     return "Hello World"
@@ -43,7 +43,7 @@ def api():
 
         clipboard = generate_clipboard(snapshot)
 
-        print(clipboard)
+        # print(clipboard)
 
         if not clipboard:
             return jsonify({"msg": "No data found in the database."}), 404
@@ -115,13 +115,6 @@ def delete(key):
     return jsonify({"msg": "Error"}), 500
 
 
-# Generate new key
-def generate_key(clipboard):
-    if not clipboard:
-        return 1
-    else:
-        latest_key = max(clipboard.keys())
-    return int(latest_key) + 1 if latest_key else 1
 
 # Error handler
 
@@ -146,6 +139,13 @@ def forbidden(e):
     return jsonify({"msg": "Forbidden"}), 403
 
 
+# Generate new key
+def generate_key(clipboard):
+    if not clipboard:
+        return 1
+    else:
+        latest_key = max(clipboard.keys())
+    return int(latest_key) + 1 if latest_key else 1
 
 
 # Generate clipboard data from the database
@@ -153,8 +153,8 @@ def generate_clipboard(snapshot):
 
     if not snapshot:
         return {}
-    print("Snapshot: isnidinde")
-    print(snapshot)
+    
+
     # remove null in snapshot list
     # snapshot = list(filter(None, snapshot))
     
@@ -168,7 +168,5 @@ def generate_clipboard(snapshot):
             clipboard[clip] = None
         else:
             clipboard[clip] = snapshot[clip]['data']
-    print("Clipboard data: isnidinde")
-    print (clipboard)
-    print("")
+    
     return clipboard
