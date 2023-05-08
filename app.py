@@ -31,7 +31,7 @@ def home():
     return "Hello World"
 
 
-
+# Get clipboard data and add new data
 @app.route('/api', methods=['GET', 'POST'])
 def api():
     if request.method == 'GET':
@@ -42,6 +42,8 @@ def api():
         snapshot = ref.order_by_key().get()
 
         clipboard = generate_clipboard(snapshot)
+
+        print(clipboard)
 
         if not clipboard:
             return jsonify({"msg": "No data found in the database."}), 404
@@ -85,6 +87,34 @@ def api():
     else:
         return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST."}), 405
 
+
+# Delete clipboard data
+@app.route('/delete/<int:key>', methods=['DELETE'])
+def delete(key):
+    if request.method == 'DELETE':
+        # get the database reference
+        ref = db.reference('/')
+
+        # read ref as json data
+        snapshot = ref.order_by_key().get()
+
+        # generate clipboard data
+        clipboard = generate_clipboard(snapshot)
+
+        # check if the key exists
+        if key not in clipboard.keys():
+            return jsonify({"msg": "Key not found in the database."}), 404
+
+        # delete the key
+        try:
+            ref.child(str(key)).delete()
+            return jsonify({"msg": "Data deleted from the database."}), 200
+        except:
+            return jsonify({"msg": "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."}), 500
+
+    return jsonify({"msg": "Error"}), 200
+
+
 # Generate new key
 def generate_key(clipboard):
     if not clipboard:
@@ -105,7 +135,7 @@ def internal_server_error(e):
 
 @app.errorhandler(405)
 def method_not_allowed(e):
-    return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST."}), 405
+    return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"}), 405
 
 @app.errorhandler(400)
 def bad_request(e):
