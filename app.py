@@ -89,9 +89,9 @@ def api():
 
 
 # Delete clipboard data
-@app.route('/delete/<int:key>', methods=['DELETE'])
+@app.route('/delete/<int:key>', methods=['GET'])
 def delete(key):
-    if request.method == 'DELETE':
+    if request.method == 'GET':
         # get the database reference
         ref = db.reference('/')
 
