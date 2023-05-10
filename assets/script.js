@@ -153,7 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // create the list item
         const listItem = document.createElement("li");
         listItem.className = "list-group-item d-flex justify-content-between align-items-center";
-        listItem.innerHTML = clipboard;
+        
+
+        // create a xmp tag
+        const pre = document.createElement("pre");
+        pre.innerText = clipboard;
+        // allow overflow into next line
+        pre.style.whiteSpace = "pre-wrap";
+        listItem.appendChild(pre);
+        
 
         // add hidden p tag to list item
         const hidden = document.createElement("p");
