@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const pre = document.createElement("pre");
         pre.innerText = clipboard;
         // allow overflow into next line
-        
+        pre.style.whiteSpace = "pre-wrap";
         listItem.appendChild(pre);
         
 
