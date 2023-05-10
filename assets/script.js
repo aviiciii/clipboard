@@ -26,18 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // get keys
         var keys = Object.keys(clipboards);
 
-        console.log(keys, clips);
+        // console.log(keys, clips);
 
 
         // loop through the clipboards and add them to the list
         for (let i = 0; i < clips.length; i++) {
-            console.log(i);
-            console.log(clips[i]);
             
             // check if clip[i] is not null
             if (clips[i] === null) {
                 continue;
             }
+
+            console.log(`${keys[i]}: ${clips[i]}`);
+        
 
             // add the clips to the list
             createClipboardListItem(clips[i], keys[i]);
