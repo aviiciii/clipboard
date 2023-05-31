@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // check if the textarea has more than 10 lines
         else if (lines > 10) {
             textarea.style.height = "16rem";
-            console.log("more than 16");
+            console.log("more than 10");
         }
         else{
             console.log("more than 1");
@@ -222,12 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // set the height of the textarea
             textarea.style.height = `${newHeight}rem`;
         }
-        
-        // scroll to the bottom of the textarea
-        textarea.scrollTop = textarea.scrollHeight;
-        textarea.scrollLeft = textarea.scrollWidth;
-
-
     });
 
     // check on delete key press
