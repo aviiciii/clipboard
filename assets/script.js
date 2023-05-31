@@ -195,5 +195,37 @@ document.addEventListener("DOMContentLoaded", () => {
         return listItem;
     }
 
+    // adjust textarea based on content size
+    const textarea = document.querySelector("#text");
+
+    // continuous check for textarea content size
+    textarea.addEventListener("input", () => {
+        // check if the textarea is empty
+        if (textarea.value.trim() === "") {
+            return;
+        }
+        // get the no of lines
+        const lines = textarea.value.split("\n").length;
+
+        // check if the no of lines is 1
+        if (lines === 1) {
+            return;
+        }
+        // compute the new height
+        const newLines = lines + 6;
+
+        if (newLines > 16) {
+            return;
+        }
+
+        // set the height of the textarea
+        textarea.style.height = `${newLines}rem`;
+
+        // scroll to the bottom of the textarea
+        textarea.scrollTop = textarea.scrollHeight;
+
+    });
+
+
     
 });
