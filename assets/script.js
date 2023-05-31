@@ -201,7 +201,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // continuous check for textarea content size
     textarea.addEventListener("input", () => {
         // check if the textarea is empty
+        
         if (textarea.value.trim() === "") {
+            textarea.style.height = "4rem";
             return;
         }
         // get the no of lines
@@ -209,13 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // check if the no of lines is 1
         if (lines === 1) {
-            return;
+            textarea.style.height = "4rem";
         }
         // compute the new height
         const newLines = lines + 6;
 
         if (newLines > 16) {
-            return;
+            textarea.style.height = "16rem";
+            
         }
 
         // set the height of the textarea
@@ -223,9 +226,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // scroll to the bottom of the textarea
         textarea.scrollTop = textarea.scrollHeight;
+        textarea.scrollLeft = textarea.scrollWidth;
+
 
     });
 
+    // check on delete
+    textarea.addEventListener("keydown", (e) => {
+        // get the no of lines
+        const lines = textarea.value.split("\n").length;
+        // check if the textarea is empty
+        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
+            textarea.style.height = `4rem`;
+            return;
+        }
+        if (e.keyCode === 8) {
+            
+
+            // check if the no of lines is 1
+            if (lines === 1) {
+                textarea.style.height = `4rem`;
+                return;
+            }
+            // compute the new height
+            const newLines = lines + 6;
+            // set the height of the textarea
+            textarea.style.height = `${newLines}rem`;
+        }
+    });
 
     
 });
