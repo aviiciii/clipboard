@@ -200,30 +200,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // continuous check for textarea content size
     textarea.addEventListener("input", () => {
-        // check if the textarea is empty
-        
-        if (textarea.value.trim() === "") {
-            textarea.style.height = "4rem";
-            return;
-        }
+
         // get the no of lines
         const lines = textarea.value.split("\n").length;
 
-        // check if the no of lines is 1
-        if (lines === 1) {
+        // check if the textarea is empty or has only spaces and new lines or has only one line
+        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") {
             textarea.style.height = "4rem";
+            console.log("empty");
         }
-        // compute the new height
-        const newLines = lines + 6;
-
-        if (newLines > 16) {
+        // check if the textarea has more than 10 lines
+        else if (lines > 10) {
             textarea.style.height = "16rem";
-            
+            console.log("more than 16");
         }
+        else{
+            console.log("more than 1");
+            // compute the new height
+            const newHeight = lines + 6;
 
-        // set the height of the textarea
-        textarea.style.height = `${newLines}rem`;
-
+            // set the height of the textarea
+            textarea.style.height = `${newHeight}rem`;
+        }
+        
         // scroll to the bottom of the textarea
         textarea.scrollTop = textarea.scrollHeight;
         textarea.scrollLeft = textarea.scrollWidth;
