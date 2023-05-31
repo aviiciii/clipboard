@@ -230,18 +230,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // check on delete
+    // check on delete key press
     textarea.addEventListener("keydown", (e) => {
-        // get the no of lines
-        const lines = textarea.value.split("\n").length;
-        // check if the textarea is empty
-        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
-            textarea.style.height = `4rem`;
-            return;
-        }
+        // check if the key pressed is the delete key
         if (e.keyCode === 8) {
-            
-
+            // get the no of lines
+            const lines = textarea.value.split("\n").length;
+            // check if the textarea is empty
+            if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
+                textarea.style.height = `4rem`;
+                return;
+            }
             // check if the no of lines is 1
             if (lines === 1) {
                 textarea.style.height = `4rem`;
