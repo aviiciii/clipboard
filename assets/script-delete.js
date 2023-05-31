@@ -32,34 +32,16 @@ addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 console.log(data);
                 alert(data.msg);
+                // on alert close reload the page
+                window.location.reload();
             })
             
             
-            deleteClipboard.then(data => {
-                // print response message
-
-                console.log(data);
-                // if (data.status === 200) {
-                //     alert("Clipboard deleted");
-                // }
-                // else if (response.status === 404) {
-                //     alert("Clipboard not found");
-                // }
-                // else {
-                //     alert("Something went wrong");
-                // }
-            })
-            .catch(error => {
-                console.log(error);
-            }
-            );
-
-            
-            
-            // clear the form
-            id.value = "";
-
         }
+        // clear the form
+        id.value = "";
+
+        
 
     });
 
