@@ -195,5 +195,57 @@ document.addEventListener("DOMContentLoaded", () => {
         return listItem;
     }
 
+    // adjust textarea based on content size
+    const textarea = document.querySelector("#text");
+
+    // continuous check for textarea content size
+    textarea.addEventListener("input", () => {
+
+        // get the no of lines
+        const lines = textarea.value.split("\n").length;
+
+        // check if the textarea is empty or has only spaces and new lines or has only one line
+        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") {
+            textarea.style.height = "4rem";
+            console.log("empty");
+        }
+        // check if the textarea has more than 10 lines
+        else if (lines > 10) {
+            textarea.style.height = "16rem";
+            console.log("more than 10");
+        }
+        else{
+            console.log("more than 1");
+            // compute the new height
+            const newHeight = lines + 6;
+
+            // set the height of the textarea
+            textarea.style.height = `${newHeight}rem`;
+        }
+    });
+
+    // check on delete key press
+    textarea.addEventListener("keydown", (e) => {
+        // check if the key pressed is the delete key
+        if (e.keyCode === 8) {
+            // get the no of lines
+            const lines = textarea.value.split("\n").length;
+            // check if the textarea is empty
+            if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
+                textarea.style.height = `4rem`;
+                return;
+            }
+            // check if the no of lines is 1
+            if (lines === 1) {
+                textarea.style.height = `4rem`;
+                return;
+            }
+            // compute the new height
+            const newLines = lines + 6;
+            // set the height of the textarea
+            textarea.style.height = `${newLines}rem`;
+        }
+    });
+
     
 });
