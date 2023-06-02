@@ -53,6 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+
+
+
     // ADD CLIPBOARDS
     // add a clipboard to the api
     const formButton = document.querySelector("#submit");
@@ -96,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
     });
+
+
 
 
     // GET CLIPBOARDS
@@ -158,15 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // create a xmp tag
         const pre = document.createElement("pre");
         pre.innerText = clipboard;
+        pre.className = "pre mt-2 mb-2";
         // allow overflow into next line
         pre.style.whiteSpace = "pre-wrap";
-        
-
-        // create a p tag
-        const p = document.createElement("p");
-        p.className = "mb-0 mt-2";
-        p.appendChild(pre);
-        listItem.appendChild(p);
+        listItem.appendChild(pre);
         
 
         // add hidden p tag to list item
