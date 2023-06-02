@@ -57,7 +57,7 @@ body::-webkit-scrollbar {
     border-bottom: 4px solid #123C69;
     background-color: #EEE2DC;
     width: 60%;
-    height: 4rem;
+    height: 6rem;
     border-radius: 0;
     padding: 20px;
     margin-bottom: 20px;
@@ -94,6 +94,7 @@ body::-webkit-scrollbar {
 }
 
 /* Clipboards */
+
 
 /* github icon */
 .existing-clipboards .github{
