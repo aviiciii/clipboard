@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // check if the textarea is empty or has only spaces and new lines or has only one line
         if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") {
-            textarea.style.height = "4rem";
+            textarea.style.height = "6rem";
             console.log("empty");
         }
         // check if the textarea has more than 10 lines
@@ -228,18 +228,16 @@ document.addEventListener("DOMContentLoaded", () => {
     textarea.addEventListener("keydown", (e) => {
         // check if the key pressed is the delete key
         if (e.keyCode === 8) {
+            
             // get the no of lines
             const lines = textarea.value.split("\n").length;
-            // check if the textarea is empty
+
+            // check if the textarea is empty or has only spaces and new lines or has only one line
             if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
-                textarea.style.height = `4rem`;
+                textarea.style.height = "6rem";
                 return;
             }
-            // check if the no of lines is 1
-            if (lines === 1) {
-                textarea.style.height = `4rem`;
-                return;
-            }
+            
             // compute the new height
             const newLines = lines + 6;
             // set the height of the textarea

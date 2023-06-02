@@ -1,8 +1,5 @@
 addEventListener("DOMContentLoaded", () => {
 
-
-
-
     // listen of the form submit
     const formButton = document.querySelector("#submit");
     formButton.addEventListener("click", (e) => {
@@ -93,12 +90,6 @@ addEventListener("DOMContentLoaded", () => {
         loading.remove();
 
     });
-
-
-
-
-
-    
 
 
     // create a clipboard list item
