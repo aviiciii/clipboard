@@ -23,23 +23,45 @@ The clipboard website provides a convenient way to store and access text data. I
 - Seamless integration with Google Firebase Realtime Database.
 - Fast and responsive user interface.
 
-## Installation
+## Prerequisites
+
+Before getting started, make sure you have the following:
+
+- A Firebase project set up with a Realtime Database.
+- The Firebase Admin SDK service account key JSON file.
+- Python installed on your local machine.
+
+## Installation and Setup
 
 To set up the clipboard website locally, follow these steps:
 
-1. Clone the repository.
-2. Install the required dependencies using `pip install -r requirements.txt`.
-3. Deploy the Flask API on Azure Webapps.
-4. Create a Google Firebase Realtime Database.
-5. Configure the Flask API to communicate with your Google Firebase Realtime Database. Refer to the Flask and Firebase documentation for more information.
-6. Start the Flask server using `python app.py`.
+### Flask API
+1. Fork this repository to your github account.
+1. Clone the forked repository to your local machine.
+2. Copy the Firebase Admin SDK service account key JSON file to the project directory.
+3. Install the required Python packages by running the following command:
+```
+pip install -r requirements.txt
+```
+4. Open the `main.py` file in a text editor.
+5. Replace the `'databaseURL'` value in the `initialize_app` function with your Firebase Realtime Database URL.
+6. Run the Flask application by executing the following command:
+```
+python main.py
+```
+7. Deploy the flask application to Azure Webapps.
+8. Open `assets/script.js` and `assets/script.js` files in a text editor.
+9. Replace the `URL` to the url that the flask api is deployed to by the Azure Webapps.
+10. Deploy your website using github pages or any other hosting service.
+
+That's it!
 
 ## Usage
 
 1. Access the clipboard website by navigating to the appropriate URL.
 2. Use the provided text input field to enter your desired text data.
-3. Click the "Save" button to store the text data in the database.
-4. To retrieve the stored text data, click the "Get" button.
+3. Click the "Add" button to store the text data in the database.
+4. Existing clipboards are automatically retrived from the database.
 5. The retrieved text data will be displayed on the website.
 
 ## Contributing
