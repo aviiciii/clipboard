@@ -1,7 +1,104 @@
 // dom content loaded
 document.addEventListener("DOMContentLoaded", () => {
 
+    // INPUT
 
+    // adjust textarea based on content size
+    const textarea = document.querySelector("#text");
+
+    // continuous check for textarea content size
+    textarea.addEventListener("input", () => {
+
+        // get the no of lines
+        const lines = textarea.value.split("\n").length;
+
+        // check if the textarea is empty or has only spaces and new lines or has only one line
+        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") {
+            textarea.style.height = "6rem";
+            console.log("empty");
+        }
+        // check if the textarea has more than 10 lines
+        else if (lines > 10) {
+            textarea.style.height = "16rem";
+            console.log("more than 10");
+        }
+        else{
+            console.log("more than 1");
+            // compute the new height
+            const newHeight = lines + 6;
+
+            // set the height of the textarea
+            textarea.style.height = `${newHeight}rem`;
+        }
+    });
+
+    // check on delete key press
+    textarea.addEventListener("keydown", (e) => {
+        // check if the key pressed is the delete key
+        if (e.keyCode === 8) {
+
+            // get the no of lines
+            const lines = textarea.value.split("\n").length;
+
+            // check if the textarea is empty or has only spaces and new lines or has only one line
+            if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
+                textarea.style.height = "6rem";
+                return;
+            }
+            
+            // compute the new height
+            const newLines = lines + 6;
+            // set the height of the textarea
+            textarea.style.height = `${newLines}rem`;
+        }
+    });
+
+    // ADD CLIPBOARDS
+    // add a clipboard to the api
+    const formButton = document.querySelector("#submit");
+    formButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // get the form
+        const content = document.querySelector("#text");
+
+        // check if the form is empty
+        if (content.value.trim() === "") {
+            alert("Please enter some text");
+        }
+        else{
+            // data to send to api
+            const data = {
+                "body": content.value.trim()
+            };
+            
+            // post the clipboard to the api
+            fetch("https://aviiciii-clipboard.azurewebsites.net/api", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            // clear the form
+            content.value = "";
+
+            // add the clipboard to the list
+            createClipboardListItem(data.body);
+
+        }
+        
+    });
+
+
+    // GET CLIPBOARDS
 
     // get existing clipboards from api and return them
     const getClipboards = async () => {
@@ -50,103 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         loading.remove();
 
     });
-
-
-
-    // add a clipboard to the api
-    const formButton = document.querySelector("#submit");
-    formButton.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        // get the form
-        const content = document.querySelector("#text");
-
-        // check if the form is empty
-        if (content.value.trim() === "") {
-            alert("Please enter some text");
-        }
-        else{
-            // data to send to api
-            const data = {
-                "body": content.value.trim()
-            };
-            
-            // post the clipboard to the api
-            fetch("https://aviiciii-clipboard.azurewebsites.net/api", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-            // clear the form
-            content.value = "";
-
-            // add the clipboard to the list
-            createClipboardListItem(data.body);
-
-        }
-        
-    });
-
-
-
-
-    // copy to clipboard
-    document.addEventListener("click", (e) => {
-        // check if the target is the copy button by class containing copy-to-clipboard
-        if (e.target.classList.contains("copy-to-clipboard-button") ) {
-            
-            // get the clipboard text
-            const clipboardText = e.target.parentElement.innerText;
-
-            // save to clipboard
-            navigator.clipboard.writeText(clipboardText).then(() => {
-            });
-
-            const clip_html = e.target.parentElement.innerHTML;
-            
-            const parent = e.target.parentElement;
-
-            // change the text to copied
-            e.target.parentElement.innerText = "Copied!";
-            setTimeout(function () {
-                parent.innerHTML = clip_html;
-            }, 800); 
-
-        }
-        else if (e.target.classList.contains("copy-to-clipboard-img")) {
-
-            // get the clipboard text
-            const clipboardText = e.target.parentElement.parentElement.innerText;
-
-            // save to clipboard
-            navigator.clipboard.writeText(clipboardText).then(() => {
-                console.log("copied to clipboard");
-            });
-            
-            const clip_html = e.target.parentElement.parentElement.innerHTML;
-
-            const parent = e.target.parentElement.parentElement;
-            
-            // change the text to copied
-            e.target.parentElement.parentElement.innerText = "Copied!";
-            setTimeout(function () {
-                parent.innerHTML = clip_html;
-            }
-            , 800);
-
-        }
-
-    });
-
 
     // create a clipboard list item
     const createClipboardListItem = (clipboard, id) => {
@@ -201,55 +201,60 @@ document.addEventListener("DOMContentLoaded", () => {
         return listItem;
     }
 
-    // adjust textarea based on content size
-    const textarea = document.querySelector("#text");
 
-    // continuous check for textarea content size
-    textarea.addEventListener("input", () => {
 
-        // get the no of lines
-        const lines = textarea.value.split("\n").length;
-
-        // check if the textarea is empty or has only spaces and new lines or has only one line
-        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") {
-            textarea.style.height = "6rem";
-            console.log("empty");
-        }
-        // check if the textarea has more than 10 lines
-        else if (lines > 10) {
-            textarea.style.height = "16rem";
-            console.log("more than 10");
-        }
-        else{
-            console.log("more than 1");
-            // compute the new height
-            const newHeight = lines + 6;
-
-            // set the height of the textarea
-            textarea.style.height = `${newHeight}rem`;
-        }
-    });
-
-    // check on delete key press
-    textarea.addEventListener("keydown", (e) => {
-        // check if the key pressed is the delete key
-        if (e.keyCode === 8) {
-
-            // get the no of lines
-            const lines = textarea.value.split("\n").length;
-
-            // check if the textarea is empty or has only spaces and new lines or has only one line
-            if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n" || textarea.value.trim() === "\n\n" || textarea.value.trim() === "\n\n\n") {
-                textarea.style.height = "6rem";
-                return;
-            }
+    // COPY TO CLIPBOARD
+    document.addEventListener("click", (e) => {
+        // check if the target is the copy button by class containing copy-to-clipboard
+        if (e.target.classList.contains("copy-to-clipboard-button") ) {
             
-            // compute the new height
-            const newLines = lines + 6;
-            // set the height of the textarea
-            textarea.style.height = `${newLines}rem`;
+            // get the clipboard text
+            const clipboardText = e.target.parentElement.innerText;
+
+            // save to clipboard
+            navigator.clipboard.writeText(clipboardText).then(() => {
+            });
+
+            const clip_html = e.target.parentElement.innerHTML;
+            
+            const parent = e.target.parentElement;
+
+            // change the text to copied
+            e.target.parentElement.innerText = "Copied!";
+            setTimeout(function () {
+                parent.innerHTML = clip_html;
+            }, 800); 
+
         }
+        else if (e.target.classList.contains("copy-to-clipboard-img")) {
+
+            // get the clipboard text
+            const clipboardText = e.target.parentElement.parentElement.innerText;
+
+            // save to clipboard
+            navigator.clipboard.writeText(clipboardText).then(() => {
+                console.log("copied to clipboard");
+            });
+            
+            const clip_html = e.target.parentElement.parentElement.innerHTML;
+
+            const parent = e.target.parentElement.parentElement;
+            
+            // change the text to copied
+            e.target.parentElement.parentElement.innerText = "Copied!";
+            setTimeout(function () {
+                parent.innerHTML = clip_html;
+            }
+            , 800);
+
+        }
+
     });
+
+
+    
+
+    
 
     
 });
