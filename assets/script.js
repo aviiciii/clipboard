@@ -160,7 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
         pre.innerText = clipboard;
         // allow overflow into next line
         pre.style.whiteSpace = "pre-wrap";
-        listItem.appendChild(pre);
+        
+
+        // create a p tag
+        const p = document.createElement("p");
+        p.className = "mb-0 mt-2";
+        p.appendChild(pre);
+        listItem.appendChild(p);
         
 
         // add hidden p tag to list item
@@ -228,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     textarea.addEventListener("keydown", (e) => {
         // check if the key pressed is the delete key
         if (e.keyCode === 8) {
-            
+
             // get the no of lines
             const lines = textarea.value.split("\n").length;
 

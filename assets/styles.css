@@ -95,6 +95,14 @@ body::-webkit-scrollbar {
 
 /* Clipboards */
 
+/* clip-text */
+.list-item-text{
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #123C69;
+    margin-top: 6px;
+}
+
 /* github icon */
 .existing-clipboards .github{
     /* center */
