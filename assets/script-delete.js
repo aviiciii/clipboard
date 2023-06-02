@@ -1,6 +1,8 @@
 addEventListener("DOMContentLoaded", () => {
 
-    // listen of the form submit
+
+    // DELETE CLIPBOARDS
+    // listen of the form submit to delete
     const formButton = document.querySelector("#submit");
     formButton.addEventListener("click", (e) => {
         e.preventDefault();
@@ -43,6 +45,10 @@ addEventListener("DOMContentLoaded", () => {
     });
 
 
+
+
+
+    // GET CLIPBOARDS
     // get existing clipboards from api and return them
     const getClipboards = async () => {
 
