@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
 
+:root{
+    --primary-color: #EEE2DC;
+    --secondary-color: #AC3B61;
+    --tertiary-color: #123C69;
+    --quaternary-color: #BAB2B5;
+}
+
+
 body{
-    background-color: #EEE2DC;
+    background-color: var(--primary-color);
     font-family: 'Crete Round', serif;
 
     /* scrollbar */
@@ -46,7 +54,7 @@ body::-webkit-scrollbar {
     width: 100%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #EEE2DC;
+    background-color: var(--primary-color);
     border-radius: 0px;
     text-align: center;
     margin-bottom: 30px;
@@ -54,8 +62,8 @@ body::-webkit-scrollbar {
 
 #text{
     border: 0;
-    border-bottom: 4px solid #123C69;
-    background-color: #EEE2DC;
+    border-bottom: 4px solid var(--tertiary-color);
+    background-color: var(--primary-color);
     width: 60%;
     height: 6rem;
     border-radius: 0;
@@ -69,8 +77,8 @@ body::-webkit-scrollbar {
 
 #number{
     border: 0;
-    border-bottom: 4px solid #123C69;
-    background-color: #EEE2DC;
+    border-bottom: 4px solid var(--tertiary-color);
+    background-color: var(--primary-color);
     width: 30%;
     height: 40px;
     border-radius: 0;
@@ -83,8 +91,8 @@ body::-webkit-scrollbar {
 }
 
 #submit{
-    background-color: #EEE2DC;
-    color: #AC3B61;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     border: 0;
     border-radius: 10px;
     padding: none;
@@ -135,12 +143,12 @@ body::-webkit-scrollbar {
 }
 
 .list-group-item{
-    background-color: #BAB2B5;
-    border: 1px solid #BAB2B5;
+    background-color: var(--quaternary-color);
+    border: 1px solid var(--quaternary-color);
     border-radius: 10px;
     margin-bottom: 30px;
     min-height: 60px;
-    color: #123C69;
+    color: var(--tertiary-color);
     
 }
 
@@ -152,11 +160,11 @@ body::-webkit-scrollbar {
     -ms-user-drag: none; /* IE10+/Edge */
 }
 .copy-to-clipboard-button{
-    background-color: #BAB2B5;
+    background-color: var(--quaternary-color);
     border: 0;
     border-radius: 10px;
     min-height: 30px;
-    color: #123C69;
+    color: var(--tertiary-color);
     text-align: center;
 
     -webkit-user-drag: none; /* Safari */
@@ -178,7 +186,7 @@ body::-webkit-scrollbar {
     }
     #text{
         width: 90%;
-        border-bottom: 3px solid #123C69;
+        border-bottom: 3px solid var(--tertiary-color);
     }
     #submit{
         margin-top: 10px;
