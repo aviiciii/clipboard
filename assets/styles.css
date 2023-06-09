@@ -9,9 +9,9 @@
 
 :root{
     --primary-color: #1f1f1f;
-    --secondary-color: #cb7a95;
+    --secondary-color: #E1A6BA;
     --tertiary-color: #bebdbd;
-    --quaternary-color: #2f2e2e;
+    --quaternary-color: #323232;
 }
 
 pre{
@@ -45,8 +45,8 @@ body::-webkit-scrollbar {
 .logo img{
     display: block;
     margin: 0 auto;
-    width: 360px;
-    margin-top: 100px;
+    width: 300px;
+    margin-top: 128px;
     margin-bottom: 80px;
 
     /* not selectable and draggable */
@@ -81,6 +81,7 @@ body::-webkit-scrollbar {
     border-radius: 0;
     padding: 20px;
     margin-bottom: 20px;
+    color: var(--tertiary-color);
 }
 
 #text:focus{
