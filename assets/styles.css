@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
 
-:root{
+/* :root{
     --primary-color: #EEE2DC;
     --secondary-color: #AC3B61;
     --tertiary-color: #123C69;
     --quaternary-color: #BAB2B5;
+} */
+
+:root{
+    --primary-color: #1f1f1f;
+    --secondary-color: #cb7a95;
+    --tertiary-color: #bebdbd;
+    --quaternary-color: #2f2e2e;
 }
+
+pre{
+    color: var(--tertiary-color);
+}
+
 
 
 body{
