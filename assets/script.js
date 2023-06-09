@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // add img to span
         const img = document.createElement("img");
-        img.src = "https://img.icons8.com/fluency-systems-regular/96/null/clipboard.png";
+        img.src = "assets/clip-dark.png";
         img.className = "img-fluid";
         img.alt = "copy";
         img.className = "copy-to-clipboard-img";
