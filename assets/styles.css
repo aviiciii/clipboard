@@ -1,7 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
 
+:root{
+    --primary-color: #EEE2DC;
+    --secondary-color: #AC3B61;
+    --tertiary-color: #123C69;
+    --quaternary-color: #BAB2B5;
+}
+
+.dark-mode{
+    --primary-color: #1f1f1f;
+    --secondary-color: #E1A6BA;
+    --tertiary-color: #D4E9FF;
+    --quaternary-color: #323232;
+}
+
+
+
+
+
 body{
-    background-color: #EEE2DC;
+    background-color: var(--primary-color);
     font-family: 'Crete Round', serif;
 
     /* scrollbar */
@@ -10,6 +28,7 @@ body{
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE 10+ */
 
+    transition: all 0.5s ease-out;
 }
 
 /* scrollbar */
@@ -19,14 +38,25 @@ body::-webkit-scrollbar {
     height: 0;
 }
 
+/* dark mode toggle */
+.dark-mode-toggle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    font-size: 14px;
+    color: var(--tertiary-color);
+    cursor: pointer;
+}
+
 
 /* logo */
 
 .logo img{
     display: block;
     margin: 0 auto;
-    width: 360px;
-    margin-top: 100px;
+    width: 300px;
+    margin-top: 128px;
     margin-bottom: 80px;
 
     /* not selectable and draggable */
@@ -46,7 +76,6 @@ body::-webkit-scrollbar {
     width: 100%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #EEE2DC;
     border-radius: 0px;
     text-align: center;
     margin-bottom: 30px;
@@ -54,13 +83,14 @@ body::-webkit-scrollbar {
 
 #text{
     border: 0;
-    border-bottom: 4px solid #123C69;
-    background-color: #EEE2DC;
+    border-bottom: 4px solid var(--tertiary-color);
+    background-color: inherit;
     width: 60%;
     height: 6rem;
     border-radius: 0;
     padding: 20px;
     margin-bottom: 20px;
+    color: var(--tertiary-color);
 }
 
 #text:focus{
@@ -69,8 +99,8 @@ body::-webkit-scrollbar {
 
 #number{
     border: 0;
-    border-bottom: 4px solid #123C69;
-    background-color: #EEE2DC;
+    border-bottom: 4px solid var(--tertiary-color);
+    background-color: inherit;
     width: 30%;
     height: 40px;
     border-radius: 0;
@@ -83,8 +113,8 @@ body::-webkit-scrollbar {
 }
 
 #submit{
-    background-color: #EEE2DC;
-    color: #AC3B61;
+    background-color: inherit;
+    color: var(--secondary-color);
     border: 0;
     border-radius: 10px;
     padding: none;
@@ -135,13 +165,18 @@ body::-webkit-scrollbar {
 }
 
 .list-group-item{
-    background-color: #BAB2B5;
-    border: 1px solid #BAB2B5;
+    background-color: var(--quaternary-color);
+    border: 1px solid var(--quaternary-color);
     border-radius: 10px;
     margin-bottom: 30px;
     min-height: 60px;
-    color: #123C69;
+    color: var(--tertiary-color);
+    transition: all 0.5s ease-out;
     
+}
+
+pre{
+    color: var(--tertiary-color);
 }
 
 .badge img{
@@ -152,12 +187,13 @@ body::-webkit-scrollbar {
     -ms-user-drag: none; /* IE10+/Edge */
 }
 .copy-to-clipboard-button{
-    background-color: #BAB2B5;
+    background-color: var(--quaternary-color);
     border: 0;
     border-radius: 10px;
     min-height: 30px;
-    color: #123C69;
+    color: var(--tertiary-color);
     text-align: center;
+    transition: all 0.5s ease-out;
 
     -webkit-user-drag: none; /* Safari */
     -moz-user-drag: none; /* Firefox */
@@ -178,7 +214,7 @@ body::-webkit-scrollbar {
     }
     #text{
         width: 90%;
-        border-bottom: 3px solid #123C69;
+        border-bottom: 3px solid var(--tertiary-color);
     }
     #submit{
         margin-top: 10px;
