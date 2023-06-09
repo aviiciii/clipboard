@@ -63,7 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
     function light(){
         toggleDarkMode(false);
 
-        
+        // change the logo
+        const logo = document.querySelector("#logo");
+        logo.src = "assets/logo.png";
+
+        // change the github
+        const github = document.querySelector("#github-logo");
+        github.src = "assets/github.png";
+
+        // change the copy to clipboard icon
+        const copy = document.querySelectorAll(".copy-to-clipboard-img");
+        copy.forEach(element => {
+            element.src = "assets/clip.png";
+        });
 
         // save preference
         localStorage.setItem('dark-mode', 'false');
@@ -256,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // add img to span
         const img = document.createElement("img");
-        
+
         // check for dark mode
         const toggle = document.querySelector("#dark-mode-toggle").checked;
         if (toggle) {
