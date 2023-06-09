@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
 
-/* :root{
+:root{
     --primary-color: #EEE2DC;
     --secondary-color: #AC3B61;
     --tertiary-color: #123C69;
     --quaternary-color: #BAB2B5;
-} */
+}
 
-:root{
+.dark-mode{
     --primary-color: #1f1f1f;
     --secondary-color: #E1A6BA;
     --tertiary-color: #bebdbd;

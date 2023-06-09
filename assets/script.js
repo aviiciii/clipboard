@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // add img to span
         const img = document.createElement("img");
-        img.src = "assets/clip-dark.png";
+        img.src = "assets/clip.png";
         img.className = "img-fluid";
         img.alt = "copy";
         img.className = "copy-to-clipboard-img";
