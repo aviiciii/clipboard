@@ -14,9 +14,7 @@
     --quaternary-color: #323232;
 }
 
-pre{
-    color: var(--tertiary-color);
-}
+
 
 
 
@@ -30,6 +28,7 @@ body{
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE 10+ */
 
+    transition: all 0.5s ease-out;
 }
 
 /* scrollbar */
@@ -37,6 +36,17 @@ body::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
     width: 0;
     height: 0;
+}
+
+/* dark mode toggle */
+.dark-mode-toggle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    font-size: 14px;
+    color: var(--tertiary-color);
+    cursor: pointer;
 }
 
 
@@ -66,7 +76,6 @@ body::-webkit-scrollbar {
     width: 100%;
     margin: 0 auto;
     padding: 20px;
-    background-color: var(--primary-color);
     border-radius: 0px;
     text-align: center;
     margin-bottom: 30px;
@@ -75,7 +84,7 @@ body::-webkit-scrollbar {
 #text{
     border: 0;
     border-bottom: 4px solid var(--tertiary-color);
-    background-color: var(--primary-color);
+    background-color: inherit;
     width: 60%;
     height: 6rem;
     border-radius: 0;
@@ -91,7 +100,7 @@ body::-webkit-scrollbar {
 #number{
     border: 0;
     border-bottom: 4px solid var(--tertiary-color);
-    background-color: var(--primary-color);
+    background-color: inherit;
     width: 30%;
     height: 40px;
     border-radius: 0;
@@ -104,7 +113,7 @@ body::-webkit-scrollbar {
 }
 
 #submit{
-    background-color: var(--primary-color);
+    background-color: inherit;
     color: var(--secondary-color);
     border: 0;
     border-radius: 10px;
@@ -162,7 +171,12 @@ body::-webkit-scrollbar {
     margin-bottom: 30px;
     min-height: 60px;
     color: var(--tertiary-color);
+    transition: all 0.5s ease-out;
     
+}
+
+pre{
+    color: var(--tertiary-color);
 }
 
 .badge img{
@@ -179,6 +193,7 @@ body::-webkit-scrollbar {
     min-height: 30px;
     color: var(--tertiary-color);
     text-align: center;
+    transition: all 0.5s ease-out;
 
     -webkit-user-drag: none; /* Safari */
     -moz-user-drag: none; /* Firefox */
