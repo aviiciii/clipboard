@@ -1,6 +1,78 @@
 // dom content loaded
 document.addEventListener("DOMContentLoaded", () => {
 
+    // DARK MODE
+    // dark mode toggle
+    const toggle = document.getElementById('dark-mode-toggle');
+
+    function toggleDarkMode(state) {
+        document.documentElement.classList.toggle("dark-mode", state);
+    }
+
+    // check preference
+    const preference = localStorage.getItem('dark-mode');
+
+    // if preference is true
+    if (preference == 'true') {
+        // check the toggle
+        toggle.checked = true;
+        // enable dark mode
+        dark();
+    } else {
+        // disable dark mode
+        light();
+    }
+
+    // when the toggle is clicked
+    toggle.addEventListener('click', function() {
+        // if the toggle is checked
+        if (toggle.checked) {
+            console.log('checked');
+            dark();
+        } else {
+            console.log('unchecked');
+            light();
+        }
+        
+    });
+
+
+    function dark() {
+
+        toggleDarkMode(true);
+
+        // change the logo
+        const logo = document.querySelector("#logo");
+        logo.src = "assets/logo-dark.png";
+
+        // change the github
+        const github = document.querySelector("#github-logo");
+        github.src = "assets/github-dark.png";
+
+        // change the copy to clipboard icon
+        const copy = document.querySelectorAll(".copy-to-clipboard-img");
+        copy.forEach(element => {
+            element.src = "assets/clip-dark.png";
+        });
+
+
+        // save preference
+        localStorage.setItem('dark-mode', 'true');
+    };
+
+    function light(){
+        toggleDarkMode(false);
+
+        
+
+        // save preference
+        localStorage.setItem('dark-mode', 'false');
+
+    }
+
+
+
+
     // INPUT
 
     // adjust textarea based on content size
@@ -184,7 +256,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // add img to span
         const img = document.createElement("img");
-        img.src = "assets/clip.png";
+        
+        // check for dark mode
+        const toggle = document.querySelector("#dark-mode-toggle").checked;
+        if (toggle) {
+            img.src = "assets/clip-dark.png";
+        } else {
+            img.src = "assets/clip.png";
+        }
         img.className = "img-fluid";
         img.alt = "copy";
         img.className = "copy-to-clipboard-img";
@@ -250,6 +329,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
+
+
+
+
+        
+    
 
 
 });
