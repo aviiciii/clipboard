@@ -198,6 +198,14 @@ pre{
     -webkit-user-drag: none; /* Safari */
     -moz-user-drag: none; /* Firefox */
     -ms-user-drag: none; /* IE10+/Edge */
+
+    cursor: pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none;
+
 }
 
 
