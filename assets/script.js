@@ -113,13 +113,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else{
             var newHeight = 0;
-            if (characters > 100) {
-                newHeight += Math.floor(characters / 80);
+            
+            characterLines = Math.floor(characters / 80);
+            
+            if (characterLines > lines) {
+                newHeight = characterLines;
+            } else {
+                newHeight = lines;
             }
             
-            if(lines > 1){
-                newHeight += lines;
-            }
 
             console.log("more than 1");
 
