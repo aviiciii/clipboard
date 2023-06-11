@@ -96,20 +96,40 @@ document.addEventListener("DOMContentLoaded", () => {
         // get the no of lines
         const lines = textarea.value.split("\n").length;
 
+        // get the no of characters
+        const characters = textarea.value.length;
+
+        console.log(characters);
+
         // check if the textarea is empty or has only spaces and new lines or has only one line
-        if (textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") {
+        if ((textarea.value.trim() === "" || lines === 1 || textarea.value.trim() === "\n") && characters < 100) {
             textarea.style.height = "6rem";
             console.log("empty");
         }
         // check if the textarea has more than 10 lines
-        else if (lines > 10) {
+        else if (lines > 10 || characters > 800) {
             textarea.style.height = "16rem";
             console.log("more than 10");
         }
         else{
+            var newHeight = 0;
+            if (characters > 100) {
+                newHeight += Math.floor(characters / 80);
+            }
+            
+            if(lines > 1){
+                newHeight += lines;
+            }
+
             console.log("more than 1");
+
             // compute the new height
-            const newHeight = lines + 6;
+            newHeight += 6;
+
+            // cap the height at 16rem
+            if (newHeight > 16) {
+                newHeight = 16;
+            }
 
             // set the height of the textarea
             textarea.style.height = `${newHeight}rem`;
