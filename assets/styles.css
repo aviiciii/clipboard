@@ -121,6 +121,17 @@ body::-webkit-scrollbar {
     margin-left: 40px;
     font-size: 30px ;
     font-weight: 700;
+
+    transition: 400ms;
+}
+
+#submit:hover{
+    filter: brightness(120%);
+    
+    transform: scale(1.02);
+    transition: 400ms;
+
+    cursor: pointer;
 }
 
 /* Clipboards */
