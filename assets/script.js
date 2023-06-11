@@ -116,11 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             characterLines = Math.floor(characters / 80);
             
-            if (characterLines > lines) {
-                newHeight = characterLines;
-            } else {
-                newHeight = lines;
-            }
+
+            newHeight = characterLines + lines;
             
 
             console.log("more than 1");
