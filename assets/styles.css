@@ -226,6 +226,26 @@ pre{
 }
 
 
+/* text highlight */
+
+::selection{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
     .logo img{
         margin-top: 30px;
