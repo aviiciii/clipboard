@@ -14,14 +14,8 @@ from flask_cors import CORS
 # Initialize Flask app
 app = Flask(__name__)
 
-# allowed origins
-origins = [
-    "http://localhost:3000",
-    "https://clip.laavesh.co",
-]
-
 # Enable CORS
-CORS(app, resources={r"/*": {"origins": origins}})
+CORS(app, resources={r"/*": {"origins": "https://clip.laavesh.co"}})
 
 # Fetch the service account key JSON file contents
 service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
