@@ -14,7 +14,7 @@ from flask_cors import CORS
 # Initialize Flask app
 app = Flask(__name__)
 
-#IP Whitelisting
+# IP Whitelisting
 allowed_ips = [
     "192.30.252.153/32",
     "192.30.252.154/32",
@@ -35,8 +35,8 @@ allowed_ips = [
     "2606:50c0:8000::153",
     "2606:50c0:8001::153",
     "2606:50c0:8002::153",
-    "2606:50c0:8003::153"
-  ]
+    "2606:50c0:8003::153",
+]
 
 
 def is_ip_allowed(ip):
