@@ -59,8 +59,8 @@ cred = credentials.Certificate(service_key)
 
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(
-    cred, {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"}
-)
+    cred,
+    {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"})
 
 
 # Default route
@@ -116,11 +116,10 @@ def api():
             ref.child(str(new_key)).set({"data": clip})
         except:
             return (
-                jsonify(
-                    {
-                        "msg": "Error while updating the database. Try again. Contact developer if problem persists at https://github.com/aviiciii ."
-                    }
-                ),
+                jsonify({
+                    "msg":
+                    "Error while updating the database. Try again. Contact developer if problem persists at https://github.com/aviiciii ."
+                }),
                 500,
             )
 
@@ -128,11 +127,10 @@ def api():
 
     else:
         return (
-            jsonify(
-                {
-                    "msg": "Method not allowed. The '/api' route accepts only GET and POST."
-                }
-            ),
+            jsonify({
+                "msg":
+                "Method not allowed. The '/api' route accepts only GET and POST."
+            }),
             405,
         )
 
@@ -166,11 +164,10 @@ def delete(key):
             return jsonify({"msg": "Data deleted from the database."}), 200
         except:
             return (
-                jsonify(
-                    {
-                        "msg": "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."
-                    }
-                ),
+                jsonify({
+                    "msg":
+                    "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."
+                }),
                 500,
             )
 
@@ -183,11 +180,10 @@ def delete(key):
 @app.errorhandler(404)
 def page_not_found(e):
     return (
-        jsonify(
-            {
-                "msg": "Page not found. Try '/api' route for requests. Contact developer at https://github.com/aviiciii ."
-            }
-        ),
+        jsonify({
+            "msg":
+            "Page not found. Try '/api' route for requests. Contact developer at https://github.com/aviiciii ."
+        }),
         404,
     )
 
@@ -195,11 +191,10 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return (
-        jsonify(
-            {
-                "msg": "Internal server error. Raise issue at https://github.com/aviiciii/clipboard/issues ."
-            }
-        ),
+        jsonify({
+            "msg":
+            "Internal server error. Raise issue at https://github.com/aviiciii/clipboard/issues ."
+        }),
         500,
     )
 
@@ -207,11 +202,10 @@ def internal_server_error(e):
 @app.errorhandler(405)
 def method_not_allowed(e):
     return (
-        jsonify(
-            {
-                "msg": "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"
-            }
-        ),
+        jsonify({
+            "msg":
+            "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"
+        }),
         405,
     )
 
