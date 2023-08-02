@@ -16,33 +16,33 @@ from flask import make_response
 app = Flask(__name__)
 
 # IP Whitelisting
-allowed_ips = [
-    # github
-    "192.30.252.153",
-    "192.30.252.154",
-    "185.199.108.153",
-    "185.199.109.153",
-    "185.199.110.153",
-    "185.199.111.153",
-    "2606:50c0:8000::153",
-    "2606:50c0:8001::153",
-    "2606:50c0:8002::153",
-    "2606:50c0:8003::153",
-    # cloudflare
-    "172.67.178.117", 
-    "104.21.64.74"
-]
+# allowed_ips = [
+#     # github
+#     "192.30.252.153",
+#     "192.30.252.154",
+#     "185.199.108.153",
+#     "185.199.109.153",
+#     "185.199.110.153",
+#     "185.199.111.153",
+#     "2606:50c0:8000::153",
+#     "2606:50c0:8001::153",
+#     "2606:50c0:8002::153",
+#     "2606:50c0:8003::153",
+#     # cloudflare
+#     "172.67.178.117", 
+#     "104.21.64.74"
+# ]
 
 
-def is_ip_allowed(ip):
-    return ip in allowed_ips
+# def is_ip_allowed(ip):
+#     return ip in allowed_ips
 
 
-@app.before_request
-def restrict_access():
-    client_ip = request.remote_addr
-    if not is_ip_allowed(client_ip):
-        return f"Access denied for {client_ip}", 403
+# @app.before_request
+# def restrict_access():
+#     client_ip = request.remote_addr
+#     if not is_ip_allowed(client_ip):
+#         return f"Access denied for {client_ip}", 403
 
 
 # Enable CORS
