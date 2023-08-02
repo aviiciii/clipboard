@@ -20,7 +20,7 @@ origins = [
 
 
 # Enable CORS
-CORS(app, resources={r'/*': {'origins': origins}})
+CORS(app, resources={r'/api/*': {'origins': origins}})
 
 
 # Fetch the service account key JSON file contents
