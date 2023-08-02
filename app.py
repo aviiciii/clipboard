@@ -46,7 +46,7 @@ def restrict_access():
 
 
 # Enable CORS
-CORS(app, resources={r"/*": {"origins": "https://clip.laavesh.co"}})
+CORS(app)
 
 # Fetch the service account key JSON file contents
 service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
@@ -58,13 +58,6 @@ firebase_admin.initialize_app(
     {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"})
 
 
-@app.route('/api', methods=['OPTIONS'])
-def options():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "https://clip.laavesh.co")
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
-    response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-    return response, 200
 
 # Default route
 @app.route("/", methods=["GET"])
