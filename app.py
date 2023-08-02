@@ -16,16 +16,7 @@ app = Flask(__name__)
 
 # IP Whitelisting
 allowed_ips = [
-    "192.30.252.153/32",
-    "192.30.252.154/32",
-    "185.199.108.153/32",
-    "185.199.109.153/32",
-    "185.199.110.153/32",
-    "185.199.111.153/32",
-    "2606:50c0:8000::153/128",
-    "2606:50c0:8001::153/128",
-    "2606:50c0:8002::153/128",
-    "2606:50c0:8003::153/128",
+    # github
     "192.30.252.153",
     "192.30.252.154",
     "185.199.108.153",
@@ -36,6 +27,9 @@ allowed_ips = [
     "2606:50c0:8001::153",
     "2606:50c0:8002::153",
     "2606:50c0:8003::153",
+    # cloudflare
+    "172.67.178.117", 
+    "104.21.64.74"
 ]
 
 
@@ -47,7 +41,7 @@ def is_ip_allowed(ip):
 def restrict_access():
     client_ip = request.remote_addr
     if not is_ip_allowed(client_ip):
-        return "Access denied", 403
+        return f"Access denied for {client_ip}", 403
 
 
 # Enable CORS
