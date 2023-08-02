@@ -56,8 +56,8 @@ body::-webkit-scrollbar {
     display: block;
     margin: 0 auto;
     width: 300px;
-    margin-top: 128px;
-    margin-bottom: 80px;
+    margin-top: 110px;
+    margin-bottom: 60px;
 
     /* not selectable and draggable */
     -webkit-user-select: none; /* Safari */
@@ -153,7 +153,7 @@ body::-webkit-scrollbar {
 }
 
 .existing-clipboards a img {
-    width: 50px;
+    width: 34px;
     /* center */
     vertical-align: middle;
     line-height: normal;
