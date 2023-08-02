@@ -4,15 +4,9 @@ import json
 import os
 
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-
-from flask import Flask
-from flask import jsonify
-from flask import request
-
+from firebase_admin import credentials, db
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-
 
 # Initialize Flask app
 app = Flask(__name__)
