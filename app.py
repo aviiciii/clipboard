@@ -2,6 +2,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+
 # Json, OS and Flask
 import json
 import os
@@ -13,37 +14,36 @@ app = Flask(__name__)
 
 # allowed origins
 origins = [
-    'http://localhost:3000',
-    'https://clip.laavesh.co',
+    "http://localhost:3000",
+    "https://clip.laavesh.co",
 ]
 
 
 # Enable CORS
-CORS(app, resources={r'/*': {'origins': origins}})
+CORS(app, resources={r"/*": {"origins": origins}})
 
 
 # Fetch the service account key JSON file contents
-service_key = json.loads(os.environ['SERVICE_ACCOUNT_KEY'])
+service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
 cred = credentials.Certificate(service_key)
 
 # Initialize the app with a service account, granting admin privileges
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://clipboard-c6b51-default-rtdb.firebaseio.com/'
-})
+firebase_admin.initialize_app(
+    cred, {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"}
+)
 
 
 # Default route
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def home():
     return "Hello World"
 
 
 # Get clipboard data and add new data
-@app.route('/api', methods=['GET', 'POST'])
+@app.route("/api", methods=["GET", "POST"])
 def api():
-    if request.method == 'GET':
-
-        ref = db.reference('/')
+    if request.method == "GET":
+        ref = db.reference("/")
 
         # read ref as json data to a list
         snapshot = ref.order_by_key().get()
@@ -57,19 +57,19 @@ def api():
 
         return jsonify(clipboard)
 
-    elif request.method == 'POST':
+    elif request.method == "POST":
         # check if the post request has the json data
         if not request.is_json:
             return jsonify({"msg": "Missing JSON in request"}), 400
 
         # get the content from the json data
         data = request.get_json()
-        clip = data['body']
+        clip = data["body"]
 
         print(clip)
 
         # get the database reference
-        ref = db.reference('/')
+        ref = db.reference("/")
 
         # read ref as json data
         snapshot = ref.order_by_key().get()
@@ -83,24 +83,36 @@ def api():
 
         try:
             # update the database
-            ref.child(str(new_key)).set({
-                'data': clip
-            })
+            ref.child(str(new_key)).set({"data": clip})
         except:
-            return jsonify({"msg": "Error while updating the database. Try again. Contact developer if problem persists at https://github.com/aviiciii ."}), 500
+            return (
+                jsonify(
+                    {
+                        "msg": "Error while updating the database. Try again. Contact developer if problem persists at https://github.com/aviiciii ."
+                    }
+                ),
+                500,
+            )
 
         return jsonify({"msg": "Data added to the database."}), 200
 
     else:
-        return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST."}), 405
+        return (
+            jsonify(
+                {
+                    "msg": "Method not allowed. The '/api' route accepts only GET and POST."
+                }
+            ),
+            405,
+        )
 
 
 # Delete clipboard data
-@app.route('/delete/<int:key>', methods=['GET'])
+@app.route("/delete/<int:key>", methods=["GET"])
 def delete(key):
-    if request.method == 'GET':
+    if request.method == "GET":
         # get the database reference
-        ref = db.reference('/')
+        ref = db.reference("/")
 
         # read ref as json data
         snapshot = ref.order_by_key().get()
@@ -123,26 +135,55 @@ def delete(key):
             ref.child(str(key)).delete()
             return jsonify({"msg": "Data deleted from the database."}), 200
         except:
-            return jsonify({"msg": "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."}), 500
+            return (
+                jsonify(
+                    {
+                        "msg": "Error while deleting the data. Try again. Contact developer if problem persists at https://github.com/aviiciii ."
+                    }
+                ),
+                500,
+            )
 
     return jsonify({"msg": "Error"}), 500
 
 
 # Error handler
 
+
 @app.errorhandler(404)
 def page_not_found(e):
-    return jsonify({"msg": "Page not found. Try '/api' route for requests. Contact developer at https://github.com/aviiciii ."}), 404
+    return (
+        jsonify(
+            {
+                "msg": "Page not found. Try '/api' route for requests. Contact developer at https://github.com/aviiciii ."
+            }
+        ),
+        404,
+    )
 
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return jsonify({"msg": "Internal server error. Raise issue at https://github.com/aviiciii/clipboard/issues ."}), 500
+    return (
+        jsonify(
+            {
+                "msg": "Internal server error. Raise issue at https://github.com/aviiciii/clipboard/issues ."
+            }
+        ),
+        500,
+    )
 
 
 @app.errorhandler(405)
 def method_not_allowed(e):
-    return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"}), 405
+    return (
+        jsonify(
+            {
+                "msg": "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"
+            }
+        ),
+        405,
+    )
 
 
 @app.errorhandler(400)
@@ -166,7 +207,6 @@ def generate_key(clipboard):
 
 # Generate clipboard data from the database
 def generate_clipboard(snapshot):
-
     if not snapshot:
         return {}
 
@@ -181,6 +221,6 @@ def generate_clipboard(snapshot):
         if snapshot[clip] is None:
             clipboard[clip] = None
         else:
-            clipboard[clip] = snapshot[clip]['data']
+            clipboard[clip] = snapshot[clip]["data"]
 
     return clipboard
