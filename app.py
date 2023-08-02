@@ -10,6 +10,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_cors import CORS
+from flask import make_response
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -56,6 +57,14 @@ firebase_admin.initialize_app(
     cred,
     {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"})
 
+
+@app.route('/api', methods=['OPTIONS'])
+def options():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "https://clip.laavesh.co")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+    return response, 200
 
 # Default route
 @app.route("/", methods=["GET"])
