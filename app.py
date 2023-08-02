@@ -1,12 +1,11 @@
 # Firebase
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-
 # Json, OS and Flask
 import json
 import os
-from flask import Flask, request, jsonify
+
+import firebase_admin
+from firebase_admin import credentials, db
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # Initialize Flask app
