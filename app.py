@@ -18,7 +18,6 @@ origins = [
 ]
 
 
-
 # Enable CORS
 CORS(app, resources={r'/*': {'origins': origins}})
 
@@ -33,7 +32,6 @@ firebase_admin.initialize_app(cred, {
 })
 
 
-
 # Default route
 @app.route('/', methods=['GET'])
 def home():
@@ -44,7 +42,7 @@ def home():
 @app.route('/api', methods=['GET', 'POST'])
 def api():
     if request.method == 'GET':
-        
+
         ref = db.reference('/')
 
         # read ref as json data to a list
@@ -63,7 +61,7 @@ def api():
         # check if the post request has the json data
         if not request.is_json:
             return jsonify({"msg": "Missing JSON in request"}), 400
-        
+
         # get the content from the json data
         data = request.get_json()
         clip = data['body']
@@ -130,24 +128,27 @@ def delete(key):
     return jsonify({"msg": "Error"}), 500
 
 
-
 # Error handler
 
 @app.errorhandler(404)
 def page_not_found(e):
     return jsonify({"msg": "Page not found. Try '/api' route for requests. Contact developer at https://github.com/aviiciii ."}), 404
 
+
 @app.errorhandler(500)
 def internal_server_error(e):
     return jsonify({"msg": "Internal server error. Raise issue at https://github.com/aviiciii/clipboard/issues ."}), 500
+
 
 @app.errorhandler(405)
 def method_not_allowed(e):
     return jsonify({"msg": "Method not allowed. The '/api' route accepts only GET and POST. The '/delete' route accepts only DELETE"}), 405
 
+
 @app.errorhandler(400)
 def bad_request(e):
     return jsonify({"msg": "Bad request"}), 400
+
 
 @app.errorhandler(403)
 def forbidden(e):
@@ -168,12 +169,10 @@ def generate_clipboard(snapshot):
 
     if not snapshot:
         return {}
-    
 
     # remove null in snapshot list
     # snapshot = list(filter(None, snapshot))
-    
-    
+
     # create a dict to store the clipboard data
     clipboard = {}
 
@@ -183,5 +182,5 @@ def generate_clipboard(snapshot):
             clipboard[clip] = None
         else:
             clipboard[clip] = snapshot[clip]['data']
-    
+
     return clipboard
