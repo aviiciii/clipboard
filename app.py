@@ -6,14 +6,29 @@ import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+
 from flask import Flask
 from flask import jsonify
 from flask import request
+
 from flask_cors import CORS
+
 
 # Initialize Flask app
 app = Flask(__name__)
 
+#IP Whitelisting
+allowed_ips = ["172.67.178.117", "104.21.64.74"]
+
+def is_ip_allowed(ip):
+    return ip in allowed_ips
+
+@app.before_request
+def restrict_access():
+    client_ip = request.remote_addr
+    if not is_ip_allowed(client_ip):
+        return "Access denied", 403
+    
 # Enable CORS
 CORS(app, resources={r"/*": {"origins": "https://clip.laavesh.co"}})
 
