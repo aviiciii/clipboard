@@ -17,7 +17,7 @@ addEventListener("DOMContentLoaded", () => {
         // check if id is a number
         else{
             // post id to api using get
-            let url = `https://aviiciii-clipboard.azurewebsites.net/delete/${id.value.trim()}`;
+            let url = `https://clipboard-snyx.onrender.com/delete/${id.value.trim()}`;
             // let url = `http://127.0.0.1:5000/delete/${id.value.trim()}`;
             
             let headers = new Headers();
@@ -59,7 +59,7 @@ addEventListener("DOMContentLoaded", () => {
         headers.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
         
         // Production
-        const response = await fetch("https://aviiciii-clipboard.azurewebsites.net/api", {method: 'GET', headers: headers});
+        const response = await fetch("https://clipboard-snyx.onrender.com/api", {method: 'GET', headers: headers});
         // Development
         // const response = await fetch("http://127.0.0.1:5000/api", {method: 'GET', headers: headers});
         const data = await response.json();
