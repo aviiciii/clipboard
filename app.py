@@ -12,50 +12,22 @@ from flask import request
 from flask_cors import CORS
 from flask import make_response
 
+# import utils
+from utils import generate_clipboard, generate_key
+
+
 # Initialize Flask app
 app = Flask(__name__)
-
-# IP Whitelisting
-# allowed_ips = [
-#     # github
-#     "192.30.252.153",
-#     "192.30.252.154",
-#     "185.199.108.153",
-#     "185.199.109.153",
-#     "185.199.110.153",
-#     "185.199.111.153",
-#     "2606:50c0:8000::153",
-#     "2606:50c0:8001::153",
-#     "2606:50c0:8002::153",
-#     "2606:50c0:8003::153",
-#     # cloudflare
-#     "172.67.178.117", 
-#     "104.21.64.74"
-# ]
-
-
-# def is_ip_allowed(ip):
-#     return ip in allowed_ips
-
-
-# @app.before_request
-# def restrict_access():
-#     client_ip = request.remote_addr
-#     if not is_ip_allowed(client_ip):
-#         return f"Access denied for {client_ip}", 403
-
-
-# Enable CORS
 CORS(app)
 
 # Fetch the service account key JSON file contents
 service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
 cred = credentials.Certificate(service_key)
-
-# Initialize the app with a service account, granting admin privileges
+# cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(
     cred,
-    {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"})
+    {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"}
+)
 
 
 
@@ -70,10 +42,8 @@ def home():
 def api():
     if request.method == "GET":
         ref = db.reference("/")
-
         # read ref as json data to a list
         snapshot = ref.order_by_key().get()
-
         clipboard = generate_clipboard(snapshot)
 
         # print(clipboard)
@@ -96,14 +66,9 @@ def api():
 
         # get the database reference
         ref = db.reference("/")
-
-        # read ref as json data
         snapshot = ref.order_by_key().get()
 
-        # generate clipboard data
         clipboard = generate_clipboard(snapshot)
-
-        # get new key
         new_key = generate_key(clipboard)
         print(new_key)
 
@@ -140,8 +105,6 @@ def delete(key):
 
         # read ref as json data
         snapshot = ref.order_by_key().get()
-
-        # generate clipboard data
         clipboard = generate_clipboard(snapshot)
 
         # remove null in clipboard dict
@@ -170,9 +133,7 @@ def delete(key):
     return jsonify({"msg": "Error"}), 500
 
 
-# Error handler
-
-
+# ---Error handlers---
 @app.errorhandler(404)
 def page_not_found(e):
     return (
@@ -216,31 +177,3 @@ def forbidden(e):
     return jsonify({"msg": "Forbidden"}), 403
 
 
-# Generate new key
-def generate_key(clipboard):
-    if not clipboard:
-        return 1
-    else:
-        latest_key = max(clipboard.keys())
-    return int(latest_key) + 1 if latest_key else 1
-
-
-# Generate clipboard data from the database
-def generate_clipboard(snapshot):
-    if not snapshot:
-        return {}
-
-    # remove null in snapshot list
-    # snapshot = list(filter(None, snapshot))
-
-    # create a dict to store the clipboard data
-    clipboard = {}
-
-    # refactor the data to a dict
-    for clip in range(1, len(snapshot)):
-        if snapshot[clip] is None:
-            clipboard[clip] = None
-        else:
-            clipboard[clip] = snapshot[clip]["data"]
-
-    return clipboard
