@@ -49,8 +49,13 @@ app = Flask(__name__)
 CORS(app)
 
 # Fetch the service account key JSON file contents
-service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
-cred = credentials.Certificate(service_key)
+# service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
+# cred = credentials.Certificate(service_key)
+
+
+cred = credentials.Certificate("credentials.json")
+
+
 
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(

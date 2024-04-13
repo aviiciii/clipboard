@@ -8,3 +8,4 @@ serviceaccountkey.json
 .env
 
 venv
+credentials.json
