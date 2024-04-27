@@ -14,16 +14,20 @@ def generate_clipboard(snapshot):
         return {}
 
     # remove null in snapshot list
-    # snapshot = list(filter(None, snapshot))
+    snapshot_i = list(filter(None, snapshot))
+
 
     # create a dict to store the clipboard data
     clipboard = {}
 
     # refactor the data to a dict
-    for clip in range(1, len(snapshot)):
-        if snapshot[clip] is None:
-            clipboard[clip] = None
-        else:
-            clipboard[clip] = snapshot[clip]["data"]
+    for clip in snapshot_i:
+        try:
+            if snapshot[clip] is None:
+                clipboard[clip] = None
+            else:
+                clipboard[clip] = snapshot[clip]["data"]
+        except:
+            print(clip)
 
     return clipboard
