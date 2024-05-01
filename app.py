@@ -1,29 +1,33 @@
-# Firebase
-# Json, OS and Flask
 import json
 import os
 
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+
 from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_cors import CORS
 from flask import make_response
 
+# develop_mode
+dev_mode = True
+
 # import utils
 from utils import generate_clipboard, generate_key
-
 
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
 # Fetch the service account key JSON file contents
-service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
-cred = credentials.Certificate(service_key)
-# cred = credentials.Certificate("credentials.json")
+if dev_mode:
+    cred = credentials.Certificate("credentials.json")
+else:
+    service_key = json.loads(os.environ["SERVICE_ACCOUNT_KEY"])
+    cred = credentials.Certificate(service_key)
+
 firebase_admin.initialize_app(
     cred,
     {"databaseURL": "https://clipboard-c6b51-default-rtdb.firebaseio.com/"}

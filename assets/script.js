@@ -1,5 +1,19 @@
+var dev_mode = true;
+
 // dom content loaded
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Development Mode
+    if (dev_mode) {
+        console.log("--Development Mode--");
+        var BASE_URL = 'http://127.0.0.1:5000'
+        devmode = document.getElementById("devmode");
+        devmode.style.display = "block";
+    }
+    else{
+        console.log("--Production--");
+        var BASE_URL = 'https://clipboard-snyx.onrender.com'
+    }
 
     // DARK MODE
     // dark mode toggle
@@ -10,16 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // check preference
-    const preference = localStorage.getItem('dark-mode');
+    var preference = localStorage.getItem("dark-mode");
+    if (preference === null) {
+        preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    console.log(preference);
 
     // if preference is true
-    if (preference == 'true') {
-        // check the toggle
+    if (preference == 'true' || preference == true) {
         toggle.checked = true;
-        // enable dark mode
         dark();
     } else {
-        // disable dark mode
         light();
     }
 
@@ -33,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('unchecked');
             light();
         }
+        save_preference();
         
     });
 
@@ -56,8 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        // save preference
-        localStorage.setItem('dark-mode', 'true');
+        
     };
 
     function light(){
@@ -77,11 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
             element.src = "assets/clip.png";
         });
 
-        // save preference
-        localStorage.setItem('dark-mode', 'false');
+        
 
     }
 
+    save_preference = () => {
+        localStorage.setItem("dark-mode", toggle.checked);
+    };
 
 
 
@@ -179,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             
             // post the clipboard to the api
-            fetch("https://clipboard-snyx.onrender.com/api", {
+            fetch(BASE_URL+ "/api", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -217,10 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers.append('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
         headers.append('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
         
-        // Production
-        const response = await fetch("https://clipboard-snyx.onrender.com/api", {method: 'GET', headers: headers});
-        // Development
-        // const response = await fetch("http://127.0.0.1:5000/api", {method: 'GET', headers: headers});
+        const response = await fetch(BASE_URL+"/api", {method: 'GET', headers: headers});
         const data = await response.json();
         return data;
     };
