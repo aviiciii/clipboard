@@ -12,7 +12,7 @@ from flask_cors import CORS
 from flask import make_response
 
 # develop_mode
-dev_mode = True
+dev_mode = False
 
 # import utils
 from utils import generate_clipboard, generate_key

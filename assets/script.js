@@ -1,4 +1,4 @@
-var dev_mode = true;
+var dev_mode = false;
 
 // dom content loaded
 document.addEventListener("DOMContentLoaded", () => {
