@@ -2,7 +2,7 @@
 
 A simple website for storing and retrieving text data.
 
-The website utilizes the fetch API to interact with a Flask API hosted on Azure Web Apps. The Flask API is responsible for communicating with the Google Firebase Realtime Database to retrieve and update data.
+The website utilizes the fetch API to interact with a Flask API hosted on [Render](https://render.com/). The Flask API is responsible for communicating with the Google Firebase Realtime Database to retrieve and update data.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ The website utilizes the fetch API to interact with a Flask API hosted on Azure 
 
 ## Introduction
 
-The clipboard website provides a convenient way to store and access text data. It leverages the power of a Flask API hosted on Azure Web Apps and integrates with the Google Firebase Realtime Database for seamless data management.
+The clipboard website provides a convenient way to store and access text data. It leverages the power of a Flask API hosted on Render and integrates with the Google Firebase Realtime Database for seamless data management.
 
 ## Features
 
@@ -49,9 +49,9 @@ pip install -r requirements.txt
 ```
 python main.py
 ```
-7. Deploy the flask application to Azure Webapps.
+7. Deploy the flask application to Render.
 8. Open `assets/script.js` and `assets/script.js` files in a text editor.
-9. Replace the `URL` to the url that the flask api is deployed to by the Azure Webapps.
+9. Replace the `URL` to the url that the flask api is deployed to by Render.
 10. Deploy your website using github pages or any other hosting service.
 
 That's it!
