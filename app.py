@@ -12,7 +12,7 @@ from flask_cors import CORS
 from flask import make_response
 
 # develop_mode
-dev_mode = False
+dev_mode = True
 
 # import utils
 from utils import generate_clipboard, generate_key
@@ -41,7 +41,10 @@ def home():
     print(request)
     print("----------------")
     print(request.headers)
-    return str(request) + "\n\n" + str(request.headers)
+    return jsonify({
+        "text": str(request),
+        "text2": dict(request.headers)
+    })
 
 
 
