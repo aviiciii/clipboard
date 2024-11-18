@@ -41,7 +41,7 @@ def home():
     print(request)
     print("----------------")
     print(request.headers)
-    return "Hello World"
+    return str(request) + "\n\n" + str(request.headers)
 
 
 
