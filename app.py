@@ -12,7 +12,7 @@ from flask_cors import CORS
 from flask import make_response
 
 # develop_mode
-dev_mode = False
+dev_mode = True
 
 # import utils
 from utils import generate_clipboard, generate_key
@@ -38,7 +38,11 @@ firebase_admin.initialize_app(
 # Default route
 @app.route("/", methods=["GET"])
 def home():
+    print(request)
+    print("----------------")
+    print(request.headers)
     return "Hello World"
+
 
 
 # Get clipboard data and add new data
